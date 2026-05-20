@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>우차니 홈</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="phone">
+
+    <section id="home" class="page active">
+      <img src="images/home.png" class="full-img" alt="홈" />
+      <button class="hotspot home-english" onclick="go('english')" aria-label="영어"></button>
+    </section>
+
+    <section id="english" class="page">
+      <img src="images/english.png" class="full-img" alt="영어" />
+      <button class="hotspot english-chuchu" onclick="go('cach')" aria-label="츄츄영어"></button>
+      <button class="hotspot english-jolly" onclick="openLink('https://www.notion.so/2026-32faf7edc95c8080bc98ed4d8112ee51')" aria-label="졸리영어"></button>
+      <button class="hotspot english-momgle" onclick="openLink('https://www.momgleedu.com/mypage/playlist')" aria-label="맘글영어"></button>
+      <button class="hotspot english-heart" onclick="go('home')" aria-label="홈"></button>
+    </section>
+
+    <section id="cach" class="page">
+      <img src="images/cach.png" class="full-img" alt="츄츄영상" />
+      <button class="hotspot cach-person" onclick="openLink('https://www.canva.com/design/DAHCgvaiz-k/93LrmYJRNVzk5IOJSqz4_g/edit?utm_content=DAHCgvaiz-k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton')" aria-label="츄츄 모음송"></button>
+      <button class="hotspot cach-title" onclick="openLink('https://crimson-rib-7b6.notion.site/1-4-3145cfb1642c804ab26ae90b8bb50ea1')" aria-label="오늘의 츄츄영상"></button>
+      <button class="hotspot cach-left-heart" onclick="go('english')" aria-label="영어로"></button>
+      <button class="hotspot cach-right-heart" onclick="go('home')" aria-label="홈으로"></button>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

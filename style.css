@@ -1,0 +1,27 @@
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:#fff7e8;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+.phone{width:100%;max-width:430px;min-height:100vh;margin:0 auto;background:#fff7e8;overflow-x:hidden}
+.page{display:none;position:relative;width:100%;min-height:100vh}
+.page.active{display:block}
+.full-img{width:100%;display:block;user-select:none}
+.hotspot{position:absolute;border:0;background:rgba(255,255,255,0);cursor:pointer}
+
+/* HOME */
+.home-english{left:56%;top:45%;width:37%;height:22%}
+
+/* ENGLISH */
+.english-chuchu{left:7%;top:10%;width:88%;height:14%}
+.english-jolly{left:7%;top:29%;width:88%;height:14%}
+.english-momgle{left:7%;top:48%;width:88%;height:14%}
+.english-heart{left:39%;top:84%;width:23%;height:12%}
+
+/* CACH */
+.cach-person{left:19%;top:15%;width:62%;height:30%}
+.cach-title{left:5%;top:49%;width:90%;height:15%}
+.cach-left-heart{left:21%;top:80%;width:24%;height:13%}
+.cach-right-heart{left:57%;top:80%;width:24%;height:13%}
+
+/* 클릭 영역 확인하려면 아래 주석을 풀면 됩니다. */
+/*
+.hotspot{background:rgba(255,0,0,.22)}
+*/
