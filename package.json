@@ -1,0 +1,7 @@
+{
+  "name": "woochani-links-app",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/generate-firebase-config.mjs"
+  }
+}

@@ -3,11 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>우차니 홈</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #app-content { display: none !important; }
+    #login-screen { display: flex; }
+    body.logged-in #app-content { display: block !important; }
+    body.logged-in #login-screen { display: none !important; }
+  </style>
 </head>
 <body>
-  <main class="phone">
+  <div id="login-screen" class="login-screen" aria-hidden="false">
+    <div class="login-card">
+      <h1 class="login-title">우차니 홈</h1>
+      <p class="login-desc">로그인 후 이용할 수 있습니다.</p>
+      <p id="login-setup" class="login-setup" hidden>
+        Vercel 환경 변수(FIREBASE_API_KEY 등 6개)를 설정한 뒤 다시 배포하세요.
+        자세한 내용은 <code>FIREBASE_SETUP.ko.md</code>를 참고하세요.
+      </p>
+      <p id="login-error" class="login-error" hidden role="alert"></p>
+      <button type="button" id="google-signin" class="google-signin">
+        Google로 로그인
+      </button>
+    </div>
+  </div>
+
+  <main id="app-content" class="phone hidden" aria-hidden="true">
 
     <section id="home" class="page active">
       <img src="images/home.png" class="full-img" alt="홈" />
@@ -31,6 +53,11 @@
     </section>
 
   </main>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
+  <script src="firebase-config.example.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

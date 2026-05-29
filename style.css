@@ -1,5 +1,19 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;background:#fff7e8;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+.hidden{display:none!important}
+body:not(.logged-in) #app-content{display:none!important}
+body:not(.logged-in) #login-screen{display:flex!important}
+body.logged-in #login-screen{display:none!important}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#fff7e8}
+.login-card{width:100%;max-width:360px;padding:32px 28px;background:#fff;border-radius:20px;box-shadow:0 8px 32px rgba(80,50,20,.1);text-align:center}
+.login-title{margin:0 0 8px;font-size:1.5rem;font-weight:700;color:#3d2a14}
+.login-desc{margin:0 0 24px;font-size:.95rem;color:#6b5340;line-height:1.5}
+.login-setup{margin:0 0 16px;padding:12px;font-size:.8rem;line-height:1.5;color:#6b5340;background:#fff7e8;border-radius:10px;text-align:left}
+.login-setup code{font-size:.78rem;color:#3d2a14}
+.login-error{margin:0 0 16px;font-size:.9rem;color:#b42318;line-height:1.4}
+.google-signin{width:100%;padding:14px 20px;border:0;border-radius:12px;background:#4285f4;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:background .15s,opacity .15s}
+.google-signin:hover:not(:disabled){background:#3367d6}
+.google-signin:disabled{opacity:.55;cursor:not-allowed}
 .phone{width:100%;max-width:430px;min-height:100vh;margin:0 auto;background:#fff7e8;overflow-x:hidden}
 .page{display:none;position:relative;width:100%;min-height:100vh}
 .page.active{display:block}
