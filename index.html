@@ -28,16 +28,19 @@
   </div>
 
   <main id="app-content" class="phone">
+
     <section id="intro" class="page active sky-page">
-      <div class="season-mark" id="season-mark">🍁</div>
+      <div class="season-mark"></div>
       <div class="flag-v">V</div>
-      <div class="floating-base">
-        <div class="base-house"></div>
+
+      <div class="base-wrap">
+        <div class="base-island"></div>
         <div class="waterfall"></div>
       </div>
 
-      <div class="intro-text">
-        <p id="type-line">▌</p>
+      <div class="center-message">
+        <p id="type-line"><span class="cursor">▌</span></p>
+
         <div id="name-box" class="name-box" hidden>
           <input id="pilot-name" maxlength="8" placeholder="이름" />
           <button onclick="savePilot()">등록</button>
@@ -46,23 +49,25 @@
     </section>
 
     <section id="welcome" class="page sky-page">
-      <div class="season-mark">🍁</div>
+      <div class="season-mark"></div>
       <div class="flag-v">V</div>
-      <div class="floating-base">
-        <div class="base-house"></div>
+
+      <div class="base-wrap">
+        <div class="base-island"></div>
         <div class="waterfall"></div>
       </div>
 
-      <div class="welcome-text">
+      <div class="center-message no-box">
         <p id="welcome-line"></p>
       </div>
     </section>
 
-    <section id="home" class="page sky-page">
-      <div class="season-mark">🍁</div>
+    <section id="home" class="page sky-page main-page">
+      <div class="season-mark"></div>
       <div class="flag-v">V</div>
-      <div class="floating-base">
-        <div class="base-house"></div>
+
+      <div class="base-wrap small-base">
+        <div class="base-island"></div>
         <div class="waterfall"></div>
       </div>
 
@@ -76,15 +81,47 @@
       <div class="today-count">
         오늘의 임무 완료 <span id="done-count">0</span>/4
       </div>
+
+      <button class="admin-btn" onclick="go('admin-lock')">관리실</button>
     </section>
 
     <section id="mission" class="page focus-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
       <h1 id="mission-title">미션</h1>
       <p id="mission-desc">오늘의 미션을 시작해요.</p>
-
       <button class="complete-btn" onclick="completeMission()">완료했어요</button>
     </section>
+
+    <section id="admin-lock" class="page focus-page">
+      <button class="back-btn" onclick="go('home')">← 돌아가기</button>
+      <h1>관리실</h1>
+      <p>관리실 암호를 입력하세요.</p>
+      <input id="admin-pass" class="admin-input" type="password" placeholder="암호" />
+      <button class="complete-btn" onclick="checkAdmin()">입장하기</button>
+    </section>
+
+    <section id="admin" class="page focus-page">
+      <button class="back-btn" onclick="go('home')">← 돌아가기</button>
+      <h1>관리실</h1>
+
+      <div class="admin-card">
+        <p>현재 파일럿</p>
+        <strong id="current-pilot-name">-</strong>
+      </div>
+
+      <div class="admin-card">
+        <p>파일럿 이름 변경</p>
+        <input id="new-pilot-name" class="admin-input" maxlength="8" placeholder="새 이름" />
+        <button class="small-btn" onclick="changePilotName()">이름 변경</button>
+      </div>
+
+      <div class="admin-card">
+        <p>오늘 완료 기록</p>
+        <strong><span id="admin-done-count">0</span>/4</strong>
+        <button class="small-btn danger" onclick="resetToday()">오늘 기록 초기화</button>
+      </div>
+    </section>
+
   </main>
 
   <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
