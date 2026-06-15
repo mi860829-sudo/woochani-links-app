@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>우차니 홈</title>
+  <title>우차니 비밀기지</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     #app-content { display: none !important; }
@@ -13,46 +13,80 @@
     body.logged-in #login-screen { display: none !important; }
   </style>
 </head>
+
 <body>
-  <div id="login-screen" class="login-screen" aria-hidden="false">
+  <div id="login-screen" class="login-screen">
     <div class="login-card">
-      <h1 class="login-title">우차니 홈</h1>
+      <h1 class="login-title">우차니 비밀기지</h1>
       <p class="login-desc">로그인 후 이용할 수 있습니다.</p>
       <p id="login-setup" class="login-setup" hidden>
         Vercel 환경 변수(FIREBASE_API_KEY 등 6개)를 설정한 뒤 다시 배포하세요.
-        자세한 내용은 <code>FIREBASE_SETUP.ko.md</code>를 참고하세요.
       </p>
       <p id="login-error" class="login-error" hidden role="alert"></p>
-      <button type="button" id="google-signin" class="google-signin">
-        Google로 로그인
-      </button>
+      <button type="button" id="google-signin" class="google-signin">Google로 로그인</button>
     </div>
   </div>
 
-  <main id="app-content" class="phone hidden" aria-hidden="true">
+  <main id="app-content" class="phone">
+    <section id="intro" class="page active sky-page">
+      <div class="season-mark" id="season-mark">🍁</div>
+      <div class="flag-v">V</div>
+      <div class="floating-base">
+        <div class="base-house"></div>
+        <div class="waterfall"></div>
+      </div>
 
-    <section id="home" class="page active">
-      <img src="images/home.png" class="full-img" alt="홈" />
-      <button class="hotspot home-english" onclick="go('english')" aria-label="영어"></button>
+      <div class="intro-text">
+        <p id="type-line">▌</p>
+        <div id="name-box" class="name-box" hidden>
+          <input id="pilot-name" maxlength="8" placeholder="이름" />
+          <button onclick="savePilot()">등록</button>
+        </div>
+      </div>
     </section>
 
-    <section id="english" class="page">
-      <img src="images/english.png" class="full-img" alt="영어" />
-      <button class="hotspot english-chuchu" onclick="go('cach')" aria-label="츄츄영어"></button>
-      <button class="hotspot english-jolly" onclick="openLink('https://www.notion.so/2026-32faf7edc95c8080bc98ed4d8112ee51')" aria-label="졸리영어"></button>
-      <button class="hotspot english-momgle" onclick="openLink('https://www.momgleedu.com/mypage/playlist')" aria-label="맘글영어"></button>
-      <button class="hotspot english-heart" onclick="go('home')" aria-label="홈"></button>
+    <section id="welcome" class="page sky-page">
+      <div class="season-mark">🍁</div>
+      <div class="flag-v">V</div>
+      <div class="floating-base">
+        <div class="base-house"></div>
+        <div class="waterfall"></div>
+      </div>
+
+      <div class="welcome-text">
+        <p id="welcome-line"></p>
+      </div>
     </section>
 
-    <section id="cach" class="page">
-      <img src="images/cach.png" class="full-img" alt="츄츄영상" />
-      <button class="hotspot cach-person" onclick="openLink('https://www.canva.com/design/DAHCgvaiz-k/93LrmYJRNVzk5IOJSqz4_g/edit?utm_content=DAHCgvaiz-k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton')" aria-label="츄츄 모음송"></button>
-      <button class="hotspot cach-title" onclick="openLink('https://crimson-rib-7b6.notion.site/1-4-3145cfb1642c804ab26ae90b8bb50ea1')" aria-label="오늘의 츄츄영상"></button>
-      <button class="hotspot cach-left-heart" onclick="go('english')" aria-label="영어로"></button>
-      <button class="hotspot cach-right-heart" onclick="go('home')" aria-label="홈으로"></button>
+    <section id="home" class="page sky-page">
+      <div class="season-mark">🍁</div>
+      <div class="flag-v">V</div>
+      <div class="floating-base">
+        <div class="base-house"></div>
+        <div class="waterfall"></div>
+      </div>
+
+      <div class="mission-panel">
+        <button onclick="goMission('visual')">시인지 탐험</button>
+        <button onclick="goMission('math')">수인지 도전</button>
+        <button onclick="goMission('korean')">한글 연구</button>
+        <button onclick="goMission('english')">영어 여행</button>
+      </div>
+
+      <div class="today-count">
+        오늘의 임무 완료 <span id="done-count">0</span>/4
+      </div>
     </section>
 
+    <section id="mission" class="page focus-page">
+      <button class="back-btn" onclick="go('home')">← 돌아가기</button>
+      <h1 id="mission-title">미션</h1>
+      <p id="mission-desc">오늘의 미션을 시작해요.</p>
+
+      <button class="complete-btn" onclick="completeMission()">완료했어요</button>
+    </section>
   </main>
+
   <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script>
   <script src="firebase-config.example.js"></script>
