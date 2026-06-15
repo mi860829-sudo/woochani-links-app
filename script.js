@@ -1,5 +1,7 @@
 let currentMission = "";
 
+const ADMIN_PASSWORD = "1004";
+
 const missions = {
   visual: {
     title: "시인지 탐험",
@@ -19,15 +21,12 @@ const missions = {
   }
 };
 
-function isLoggedIn() {
-  return document.body.classList.contains("logged-in");
-}
-
 function go(pageId) {
   document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
   document.getElementById(pageId).classList.add("active");
   window.scrollTo(0, 0);
   updateCount();
+  updateAdmin();
 }
 
 function setSeason() {
@@ -42,13 +41,9 @@ function setSeason() {
   document.querySelectorAll(".season-mark").forEach(el => el.textContent = mark);
 }
 
-function typeLine(text, delay = 900) {
+function showTypeLine(text) {
   const line = document.getElementById("type-line");
-  line.textContent = "▌";
-
-  setTimeout(() => {
-    line.textContent = text;
-  }, delay);
+  line.innerHTML = `${text} <span class="cursor">▌</span>`;
 }
 
 function startIntro() {
@@ -58,12 +53,13 @@ function startIntro() {
 
   if (name) {
     go("welcome");
+
     const welcome = document.getElementById("welcome-line");
-    welcome.innerHTML = `복귀를 환영합니다.<br>파일럿 ${name}.`;
+    welcome.innerHTML = `환영합니다.<br>파일럿 ${name}`;
 
     setTimeout(() => {
       go("home");
-    }, 2300);
+    }, 2200);
 
     return;
   }
@@ -75,11 +71,9 @@ function startIntro() {
   ];
 
   let i = 0;
-  const line = document.getElementById("type-line");
 
   function next() {
-    line.textContent = steps[i];
-
+    showTypeLine(steps[i]);
     i++;
 
     if (i < steps.length) {
@@ -88,7 +82,7 @@ function startIntro() {
       setTimeout(() => {
         document.getElementById("name-box").hidden = false;
         document.getElementById("pilot-name").focus();
-      }, 600);
+      }, 500);
     }
   }
 
@@ -105,14 +99,15 @@ function savePilot() {
   }
 
   localStorage.setItem("pilotName", name);
+
   go("welcome");
 
   const welcome = document.getElementById("welcome-line");
-  welcome.innerHTML = `파일럿 ${name} 등록 완료.<br>복귀를 환영합니다.`;
+  welcome.innerHTML = `파일럿 ${name} 등록 완료!<br>환영합니다!`;
 
   setTimeout(() => {
     go("home");
-  }, 2300);
+  }, 2400);
 }
 
 function goMission(type) {
@@ -148,6 +143,49 @@ function completeMission() {
 function updateCount() {
   const el = document.getElementById("done-count");
   if (el) el.textContent = getDone().length;
+}
+
+function checkAdmin() {
+  const pass = document.getElementById("admin-pass").value.trim();
+
+  if (pass !== ADMIN_PASSWORD) {
+    alert("암호가 맞지 않아요.");
+    return;
+  }
+
+  document.getElementById("admin-pass").value = "";
+  go("admin");
+}
+
+function updateAdmin() {
+  const name = localStorage.getItem("pilotName") || "-";
+  const current = document.getElementById("current-pilot-name");
+  const adminDone = document.getElementById("admin-done-count");
+
+  if (current) current.textContent = name;
+  if (adminDone) adminDone.textContent = getDone().length;
+}
+
+function changePilotName() {
+  const input = document.getElementById("new-pilot-name");
+  const name = input.value.trim();
+
+  if (!name) {
+    alert("새 이름을 입력해줘.");
+    return;
+  }
+
+  localStorage.setItem("pilotName", name);
+  input.value = "";
+  updateAdmin();
+  alert(`파일럿 ${name}으로 변경했어요.`);
+}
+
+function resetToday() {
+  localStorage.removeItem(todayKey());
+  updateCount();
+  updateAdmin();
+  alert("오늘 기록을 초기화했어요.");
 }
 
 function openLink(url) {
