@@ -489,3 +489,12 @@ body.logged-in #login-screen{display:none!important}
 #type-line{
   white-space:pre-line !important;
 }
+/* hidden 속성 강제 적용 */
+[hidden]{
+  display:none !important;
+}
+
+/* 이름 입력창은 hidden일 때 절대 안 보이게 */
+.name-box[hidden]{
+  display:none !important;
+}
