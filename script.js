@@ -12,9 +12,8 @@ const visualCards = Array.from({ length: 60 }, (_, i) => {
   return {
     id: i + 1,
     title: `시인지카드 ${i + 1}`,
-    image: `images/visual/visual-card-${num}.jpg`
-  };
-});
+  image: `visual-card-${num}.jpg`}
+  
 
 document.addEventListener("DOMContentLoaded", () => {
   startIntro();
