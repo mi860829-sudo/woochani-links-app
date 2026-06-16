@@ -392,7 +392,7 @@ body.logged-in #login-screen{display:none!important}
   margin:8px 0 16px;
 }
 
-/* 카드 선택: 글자보다 사진 중심 */
+/* 카드 선택: 사진 중심 */
 .card-list{
   display:grid;
   grid-template-columns:1fr;
