@@ -87,25 +87,45 @@
           <div id="card-list" class="card-list"></div>
         </div>
 
-        <div id="card-play-view" hidden>
-          <p id="selected-card-title" class="mission-sub"></p>
-          <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
+       <div id="card-play-view" hidden>
+  <p id="selected-card-title" class="mission-sub"></p>
 
-          <div class="timer">
-            ⏱ <span id="timer-text">10:00</span>
-          </div>
+  <!-- 카드 이미지 상단 크게 -->
+  <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
 
-          <div class="timer-buttons">
-            <button onclick="startTimer()">시작</button>
-            <button onclick="stopTimer()">정지</button>
-          </div>
+  <!-- 원형 타이머 -->
+  <div class="timer-circle-wrap">
+    <svg width="130" height="130" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="54"
+        fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
+      <circle id="timer-circle" cx="60" cy="60" r="54"
+        fill="none" stroke="#5bc7ff" stroke-width="10"
+        stroke-linecap="round"
+        stroke-dasharray="339.3"
+        stroke-dashoffset="0"
+        transform="rotate(-90 60 60)"/>
+    </svg>
+    <span id="timer-text" class="timer-text-inside">10:00</span>
+  </div>
 
-          <label class="photo-btn">
-            사진찍기
-            <input id="mission-photo" type="file" accept="image/*" capture="environment" hidden onchange="previewPhoto(event)" />
-          </label>
+  <!-- 이모티콘 버튼 -->
+  <div class="timer-buttons">
+    <button onclick="startTimer()">▶️</button>
+    <button onclick="stopTimer()">⏸️</button>
+  </div>
 
-          <img id="photo-preview" class="photo-preview" hidden alt="완성 사진 미리보기" />
+  <!-- 사진찍기: 카드 위에 보이고 아래서 촬영 -->
+  <label class="photo-btn">
+    📷
+    <input id="mission-photo" type="file" accept="image/*"
+      capture="environment" hidden onchange="previewPhoto(event)" />
+  </label>
+
+  <img id="photo-preview" class="photo-preview" hidden alt="완성 사진" />
+
+  <button class="complete-btn mission-complete" onclick="completeCardMission()">✅</button>
+</div>
+      
 
           <button class="complete-btn mission-complete" onclick="completeCardMission()">완료</button>
         </div>
