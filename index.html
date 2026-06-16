@@ -29,7 +29,6 @@
 
   <main id="app-content" class="phone">
 
-    <!-- 인트로 -->
     <section id="intro" class="page active intro-page">
       <div class="intro-message">
         <p id="type-line"><span class="cursor">▌</span></p>
@@ -43,7 +42,6 @@
       </div>
     </section>
 
-    <!-- 메인 -->
     <section id="home" class="page main-page">
       <div class="mission-panel">
         <button onclick="goMission('visual')">
@@ -75,7 +73,6 @@
       <button class="admin-btn" onclick="go('admin-lock')">관리실</button>
     </section>
 
-    <!-- 미션 화면: 시인지 우선 구현 -->
     <section id="mission" class="page mission-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
 
@@ -87,47 +84,38 @@
           <div id="card-list" class="card-list"></div>
         </div>
 
-       <div id="card-play-view" hidden>
-  <p id="selected-card-title" class="mission-sub"></p>
+        <div id="card-play-view" hidden>
+          <p id="selected-card-title" class="mission-sub"></p>
 
-  <!-- 카드 이미지 상단 크게 -->
-  <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
+          <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
 
-  <!-- 원형 타이머 -->
-  <div class="timer-circle-wrap">
-    <svg width="130" height="130" viewBox="0 0 120 120">
-      <circle cx="60" cy="60" r="54"
-        fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
-      <circle id="timer-circle" cx="60" cy="60" r="54"
-        fill="none" stroke="#5bc7ff" stroke-width="10"
-        stroke-linecap="round"
-        stroke-dasharray="339.3"
-        stroke-dashoffset="0"
-        transform="rotate(-90 60 60)"/>
-    </svg>
-    <span id="timer-text" class="timer-text-inside">10:00</span>
-  </div>
+          <div class="timer-circle-wrap">
+            <svg width="130" height="130" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="54"
+                fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
+              <circle id="timer-circle" cx="60" cy="60" r="54"
+                fill="none" stroke="#5bc7ff" stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="339.3"
+                stroke-dashoffset="0"
+                transform="rotate(-90 60 60)"/>
+            </svg>
+            <span id="timer-text" class="timer-text-inside">10:00</span>
+          </div>
 
-  <!-- 이모티콘 버튼 -->
-  <div class="timer-buttons">
-    <button onclick="startTimer()">▶️</button>
-    <button onclick="stopTimer()">⏸️</button>
-  </div>
+          <div class="timer-buttons">
+            <button onclick="startTimer()">▶️</button>
+            <button onclick="stopTimer()">⏸️</button>
+          </div>
 
-  <!-- 사진찍기: 카드 위에 보이고 아래서 촬영 -->
-  <label class="photo-btn">
-    📷
-    <input id="mission-photo" type="file" accept="image/*"
-      capture="environment" hidden onchange="previewPhoto(event)" />
-  </label>
+          <label class="photo-btn">
+            📷
+            <input id="mission-photo" type="file" accept="image/*" capture="environment" hidden onchange="previewPhoto(event)" />
+          </label>
 
-  <img id="photo-preview" class="photo-preview" hidden alt="완성 사진" />
+          <img id="photo-preview" class="photo-preview" hidden alt="완성 사진" />
 
-  <button class="complete-btn mission-complete" onclick="completeCardMission()">✅</button>
-</div>
-      
-
-          <button class="complete-btn mission-complete" onclick="completeCardMission()">완료</button>
+          <button class="complete-btn mission-complete" onclick="completeCardMission()">✅</button>
         </div>
       </div>
 
@@ -136,7 +124,6 @@
       </div>
     </section>
 
-    <!-- 관리실 비밀번호 -->
     <section id="admin-lock" class="page focus-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
       <h1>관리실</h1>
@@ -162,7 +149,6 @@
       </div>
     </section>
 
-    <!-- 관리실 -->
     <section id="admin" class="page focus-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
       <h1>관리실</h1>
