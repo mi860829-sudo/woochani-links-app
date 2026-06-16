@@ -99,9 +99,11 @@ async function savePilot() {
   const enterBtn = document.getElementById("enter-btn");
 
   if (nameBox) nameBox.hidden = true;
+  if (enterBtn) enterBtn.hidden = true;
 
   await typeText(`파일럿 ${name} 등록 완료!`);
   await typeText("환영합니다");
+  await typeText(`파일럿 ${name}`);
 
   if (enterBtn) enterBtn.hidden = false;
 }
