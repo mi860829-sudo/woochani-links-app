@@ -60,8 +60,8 @@ async function startIntro() {
   const enterBtn = document.getElementById("enter-btn");
   const input = document.getElementById("pilot-name");
 
-  nameBox.hidden = true;
-  enterBtn.hidden = true;
+  if (nameBox) nameBox.hidden = true;
+  if (enterBtn) enterBtn.hidden = true;
   if (input) input.value = "";
 
   await typeText("신호 수신중...");
@@ -74,15 +74,16 @@ async function startIntro() {
     await typeText("이름을 등록해주세요");
     await delay(300);
 
-    nameBox.hidden = false;
-    input.focus();
+    if (nameBox) nameBox.hidden = false;
+    if (input) input.focus();
+
     return;
   }
 
-  await typeText(savedName);
+  await typeText(`파일럿 ${savedName}`);
   await delay(300);
 
-  enterBtn.hidden = false;
+  if (enterBtn) enterBtn.hidden = false;
 }
 
 async function savePilot() {
@@ -98,8 +99,8 @@ async function savePilot() {
 
   localStorage.setItem("pilotName", name);
 
-  nameBox.hidden = true;
-  enterBtn.hidden = true;
+  if (nameBox) nameBox.hidden = true;
+  if (enterBtn) enterBtn.hidden = true;
 
   await typeText("환영합니다");
   await delay(500);
@@ -107,7 +108,7 @@ async function savePilot() {
   await typeText(`파일럿 ${name}`);
   await delay(300);
 
-  enterBtn.hidden = false;
+  if (enterBtn) enterBtn.hidden = false;
 }
 
 /* 오늘 완료 기록 */
