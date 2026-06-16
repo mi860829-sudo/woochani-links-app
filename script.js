@@ -55,35 +55,34 @@ async function typeText(text, speed = 80) {
 }
 
 async function startIntro() {
-  const name = localStorage.getItem("pilotName");
+  const savedName = localStorage.getItem("pilotName");
   const nameBox = document.getElementById("name-box");
   const enterBtn = document.getElementById("enter-btn");
-  const line = document.getElementById("type-line");
 
   if (nameBox) nameBox.hidden = true;
   if (enterBtn) enterBtn.hidden = true;
-  if (line) line.innerHTML = `<span class="cursor">▌</span>`;
 
   await typeText("신호 수신중...");
 
-  if (!name) {
-    await typeText("새 파일럿 감지...");
-    await typeText("이름을 입력하세요");
+  if (!savedName) {
+    await typeText("파일럿...");
+    await typeText("이름을 등록해주세요");
 
     if (nameBox) {
       nameBox.hidden = false;
-      const input = document.getElementById("pilot-name");
-      if (input) input.focus();
+      document.getElementById("pilot-name").value = "";
+      document.getElementById("pilot-name").focus();
     }
 
     return;
   }
 
-  await typeText("환영합니다");
-  await typeText(`파일럿 ${name}`);
+  await typeText("파일럿...");
+  await typeText(savedName);
 
   if (enterBtn) enterBtn.hidden = false;
 }
+
 async function savePilot() {
   const input = document.getElementById("pilot-name");
   const name = input.value.trim();
