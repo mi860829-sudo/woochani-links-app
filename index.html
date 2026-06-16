@@ -73,56 +73,67 @@
       <button class="admin-btn" onclick="go('admin-lock')">관리실</button>
     </section>
 
-    <section id="mission" class="page mission-page">
-      <button class="back-btn" onclick="go('home')">← 돌아가기</button>
+<section id="mission" class="page mission-page">
+  <button class="back-btn" onclick="go('home')">← 돌아가기</button>
 
-      <div class="study-card">
-        <h1 id="mission-title">오늘의 시인지 미션</h1>
+  <div class="study-card">
+    <h1 id="mission-title">오늘의 시인지 미션</h1>
 
-        <div id="card-select-view">
-          <p class="mission-sub">하고 싶은 시인지카드를 골라요</p>
-          <div id="card-list" class="card-list"></div>
-        </div>
+    <div id="card-select-view">
+      <p class="mission-sub">하고 싶은 시인지카드를 골라요</p>
+      <div id="card-list" class="card-list"></div>
+    </div>
 
-        <div id="card-play-view" hidden>
-          <p id="selected-card-title" class="mission-sub"></p>
+    <div id="card-play-view" hidden>
+      <p id="selected-card-title" class="mission-sub"></p>
 
-          <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
+      <button class="mission-image-button" onclick="openImageModal()" type="button">
+        <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
+      </button>
 
-          <div class="timer-circle-wrap">
-            <svg width="130" height="130" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="54"
-                fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
-              <circle id="timer-circle" cx="60" cy="60" r="54"
-                fill="none" stroke="#5bc7ff" stroke-width="10"
-                stroke-linecap="round"
-                stroke-dasharray="339.3"
-                stroke-dashoffset="0"
-                transform="rotate(-90 60 60)"/>
-            </svg>
-            <span id="timer-text" class="timer-text-inside">10:00</span>
-          </div>
+      <button class="mission-back-btn" onclick="openVisualMission()" type="button">
+        ← 카드 다시 고르기
+      </button>
 
-          <div class="timer-buttons">
-            <button onclick="startTimer()">▶️</button>
-            <button onclick="stopTimer()">⏸️</button>
-          </div>
-
-          <label class="photo-btn">
-            📷
-            <input id="mission-photo" type="file" accept="image/*" capture="environment" hidden onchange="previewPhoto(event)" />
-          </label>
-
-          <img id="photo-preview" class="photo-preview" hidden alt="완성 사진" />
-
-          <button class="complete-btn mission-complete" onclick="completeCardMission()">✅</button>
-        </div>
+      <div class="timer-circle-wrap">
+        <svg width="130" height="130" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54"
+            fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
+          <circle id="timer-circle" cx="60" cy="60" r="54"
+            fill="none" stroke="#5bc7ff" stroke-width="10"
+            stroke-linecap="round"
+            stroke-dasharray="339.3"
+            stroke-dashoffset="0"
+            transform="rotate(-90 60 60)"/>
+        </svg>
+        <span id="timer-text" class="timer-text-inside">10:00</span>
       </div>
 
-      <div id="clear-effect" class="clear-effect" hidden>
-        🎉<br />MISSION CLEAR<br />🎆 🎆 🎆
+      <div class="timer-buttons">
+        <button onclick="startTimer()" type="button">▶️</button>
+        <button onclick="stopTimer()" type="button">⏸️</button>
       </div>
-    </section>
+
+      <label class="photo-btn">
+        📷
+        <input id="mission-photo" type="file" accept="image/*" capture="environment" hidden onchange="previewPhoto(event)" />
+      </label>
+
+      <img id="photo-preview" class="photo-preview" hidden alt="완성 사진" />
+
+      <button class="complete-btn mission-complete" onclick="completeCardMission()" type="button">✅</button>
+    </div>
+  </div>
+
+  <div id="clear-effect" class="clear-effect" hidden>
+    🎉<br />MISSION CLEAR<br />🎆 🎆 🎆
+  </div>
+</section>
+
+<div id="image-modal" class="image-modal" hidden onclick="closeImageModal()">
+  <button class="image-modal-close" onclick="closeImageModal()" type="button">×</button>
+  <img id="modal-card-img" src="" alt="확대 카드" />
+</div>
 
     <section id="admin-lock" class="page focus-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
