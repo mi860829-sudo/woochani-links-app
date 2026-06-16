@@ -238,7 +238,7 @@ function selectVisualCard(card) {
   if (selectView) selectView.hidden = true;
   if (playView) playView.hidden = false;
 
-  document.getElementById("mission-title").textContent = "오늘의 시인지 미션";
+  document.getElementById("mission-title").textContent = "오늘의 미션";
 
   if (title) title.textContent = "";
   if (img) img.src = card.image;
