@@ -29,9 +29,10 @@
 
   <main id="app-content" class="phone">
 
+    <!-- 인트로 -->
     <section id="intro" class="page active intro-page">
       <div class="intro-message">
-        <p id="type-line"><span class="cursor">|</span></p>
+        <p id="type-line"><span class="cursor">▌</span></p>
 
         <div id="name-box" class="name-box" hidden>
           <input id="pilot-name" maxlength="8" placeholder="이름" />
@@ -42,6 +43,7 @@
       </div>
     </section>
 
+    <!-- 메인 -->
     <section id="home" class="page main-page">
       <div class="mission-panel">
         <button onclick="goMission('visual')">
@@ -70,44 +72,42 @@
         <span id="done-count">0</span>/4
       </div>
 
-      <button class="admin-btn" onclick="go('admin-lock')" aria-label="관리실 입장">관리실</button>
+      <button class="admin-btn" onclick="go('admin-lock')">관리실</button>
     </section>
 
+    <!-- 미션 화면: 시인지 우선 구현 -->
     <section id="mission" class="page mission-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
 
       <div class="study-card">
-        <h1 id="mission-title">오늘의 미션</h1>
+        <h1 id="mission-title">오늘의 시인지 미션</h1>
 
         <div id="card-select-view">
-          <p class="mission-sub">하고 싶은 카드를 골라요</p>
+          <p class="mission-sub">하고 싶은 시인지카드를 골라요</p>
           <div id="card-list" class="card-list"></div>
         </div>
 
         <div id="card-play-view" hidden>
-          <img id="selected-card-img" class="mission-img" src="" alt="미션 카드" />
+          <p id="selected-card-title" class="mission-sub"></p>
+          <img id="selected-card-img" class="mission-img" src="" alt="시인지카드" />
 
           <div class="timer">
             ⏱ <span id="timer-text">10:00</span>
           </div>
 
-          <div class="energy-bar">
-            <div id="energy-fill" class="energy-fill"></div>
-          </div>
-
           <div class="timer-buttons">
-            <button onclick="startTimer()">▶</button>
-            <button onclick="stopTimer()">⏸</button>
+            <button onclick="startTimer()">시작</button>
+            <button onclick="stopTimer()">정지</button>
           </div>
 
           <label class="photo-btn">
-            📷
+            사진찍기
             <input id="mission-photo" type="file" accept="image/*" capture="environment" hidden onchange="previewPhoto(event)" />
           </label>
 
           <img id="photo-preview" class="photo-preview" hidden alt="완성 사진 미리보기" />
 
-          <button class="complete-btn mission-complete" onclick="completeCardMission()">CLEAR</button>
+          <button class="complete-btn mission-complete" onclick="completeCardMission()">완료</button>
         </div>
       </div>
 
@@ -116,8 +116,11 @@
       </div>
     </section>
 
+    <!-- 관리실 비밀번호 -->
     <section id="admin-lock" class="page focus-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
+      <h1>관리실</h1>
+      <p>관리실 암호를 입력하세요.</p>
 
       <div class="pass-pad">
         <input id="admin-pass" class="admin-input" type="password" placeholder="암호" readonly />
@@ -132,13 +135,14 @@
           <button onclick="pressPass('7')">7</button>
           <button onclick="pressPass('8')">8</button>
           <button onclick="pressPass('9')">9</button>
-          <button onclick="clearPass()">←</button>
+          <button onclick="clearPass()">지움</button>
           <button onclick="pressPass('0')">0</button>
-          <button onclick="checkAdmin()">확인</button>
+          <button onclick="checkAdmin()">입장</button>
         </div>
       </div>
     </section>
 
+    <!-- 관리실 -->
     <section id="admin" class="page focus-page">
       <button class="back-btn" onclick="go('home')">← 돌아가기</button>
       <h1>관리실</h1>
