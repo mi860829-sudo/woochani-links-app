@@ -75,7 +75,7 @@ body.logged-in #login-screen{display:none!important}
 
 /* 배경 */
 .intro-page{
-  background-image:url("images/intro-bg.png") !important;
+  background-image:url("intro-bg.png") !important;
   background-size:contain !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -83,7 +83,7 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .main-page{
-  background-image:url("images/main-bg.png") !important;
+  background-image:url("main-bg.png") !important;
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -91,7 +91,7 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .mission-page{
-  background-image:url("images/study-bg.png") !important;
+  background-image:url("study-bg.png") !important;
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -112,29 +112,26 @@ body.logged-in #login-screen{display:none!important}
   align-items:center;
   text-align:center;
   padding:30px;
-  background:none !important;
-  border:0 !important;
-  box-shadow:none !important;
-  backdrop-filter:none !important;
-  -webkit-backdrop-filter:none !important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
 }
 
 #type-line{
   margin:0 0 26px;
-  color:#ffffff;
+  color:#fff;
   font-size:2rem;
   font-weight:900;
   line-height:1.55;
   white-space:pre-line;
-  text-shadow:
-    0 0 8px rgba(0,0,0,.85),
-    0 2px 8px rgba(0,0,0,.75),
-    0 4px 18px rgba(0,0,0,.55);
+  text-shadow:0 0 8px rgba(0,0,0,.85),0 2px 8px rgba(0,0,0,.75),0 4px 18px rgba(0,0,0,.55);
 }
 
 .cursor{
   display:inline-block;
-  color:#ffffff;
+  color:#fff;
   font-weight:200;
   font-size:1em;
   margin-left:3px;
@@ -171,30 +168,30 @@ body.logged-in #login-screen{display:none!important}
   box-shadow:0 8px 22px rgba(40,90,130,.14);
 }
 
-/* 인트로 버튼 */
+/* 투명 버튼 */
 .name-box button,
 .enter-btn{
-  background:rgba(120,210,255,.16);
-  border:1px solid rgba(255,255,255,.55);
-  color:#ffffff;
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  box-shadow:0 0 16px rgba(255,255,255,.2);
+  background:rgba(120,210,255,.08);
+  border:2px solid rgba(255,255,255,.8);
+  color:#fff;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  box-shadow:0 0 15px rgba(255,255,255,.22);
   text-shadow:0 1px 4px rgba(0,0,0,.45);
-  border-radius:18px;
+  border-radius:22px;
   font-weight:900;
 }
 
 .name-box button{
-  min-width:180px;
-  min-height:56px;
+  min-width:190px;
+  min-height:58px;
   font-size:1.15rem;
 }
 
 .enter-btn{
-  min-width:280px;
-  min-height:72px;
-  font-size:1.8rem;
+  min-width:320px;
+  min-height:80px;
+  font-size:2rem;
   padding:12px 28px;
 }
 
@@ -204,27 +201,27 @@ body.logged-in #login-screen{display:none!important}
   left:50%;
   top:8%;
   transform:translateX(-50%);
-  width:78%;
+  width:82%;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:20px;
+  gap:22px;
   z-index:8;
 }
 
 .mission-panel button{
-  min-height:120px;
-  background:rgba(120,210,255,.16);
-  border:1px solid rgba(255,255,255,.55);
-  border-radius:32px;
-  color:#ffffff;
+  min-height:118px;
+  background:rgba(120,210,255,.08);
+  border:2px solid rgba(255,255,255,.72);
+  border-radius:30px;
+  color:#fff;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:12px;
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  box-shadow:0 0 14px rgba(255,255,255,.18);
+  gap:10px;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  box-shadow:0 0 14px rgba(255,255,255,.2);
   text-shadow:0 1px 4px rgba(0,0,0,.45);
   transition:.2s;
 }
@@ -237,11 +234,11 @@ body.logged-in #login-screen{display:none!important}
   font-size:1.5rem;
   line-height:1.2;
   font-weight:900;
-  color:#ffffff;
+  color:#fff;
 }
 
 .mission-panel button strong{
-  color:#ffffff;
+  color:#fff;
   font-size:1.05rem;
   font-weight:900;
 }
@@ -251,37 +248,111 @@ body.logged-in #login-screen{display:none!important}
   position:absolute;
   left:7%;
   bottom:4%;
-  width:120px;
-  padding:10px;
+  width:125px;
+  padding:11px;
   text-align:center;
   border-radius:26px;
-  background:rgba(120,210,255,.16);
-  border:1px solid rgba(255,255,255,.55);
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  color:#ffffff;
+  background:rgba(120,210,255,.08);
+  border:2px solid rgba(255,255,255,.72);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  color:#fff;
   text-shadow:0 1px 4px rgba(0,0,0,.45);
   font-weight:900;
   z-index:20;
-  box-shadow:0 0 14px rgba(255,255,255,.18);
+  box-shadow:0 0 14px rgba(255,255,255,.2);
 }
 
-/* 관리실 */
+/* 메인 문 클릭 영역 */
 .admin-btn{
   position:absolute;
-  right:5%;
+  right:3%;
   bottom:4%;
+  width:25%;
+  height:25%;
+  z-index:30;
+  padding:0;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:transparent!important;
+  font-size:0!important;
+}
+
+/* 관리실 입구 화면 */
+#admin-lock{
+  background-image:url("admin-door.png") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+  background-color:#dff5ff !important;
+  padding:0 !important;
+  color:#fff !important;
+}
+
+/* 관리실 입구 뒤로가기 */
+#admin-lock .back-btn{
+  position:absolute;
+  top:24px;
+  left:24px;
   z-index:20;
-  padding:10px 16px;
-  background:rgba(120,210,255,.16);
-  border:1px solid rgba(255,255,255,.55);
-  border-radius:999px;
-  color:#ffffff;
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
+  background:rgba(120,210,255,.08);
+  border:2px solid rgba(255,255,255,.72);
+  color:#fff;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
   text-shadow:0 1px 4px rgba(0,0,0,.45);
+  box-shadow:0 0 14px rgba(255,255,255,.2);
+}
+
+#admin-lock h1,
+#admin-lock p{
+  display:none!important;
+}
+
+#admin-lock .pass-pad{
+  position:absolute;
+  left:50%;
+  top:52%;
+  transform:translate(-50%,-50%);
+  width:78%;
+  max-width:330px;
+  margin:0!important;
+  padding:22px 18px;
+  border-radius:28px;
+  background:rgba(20,30,25,.12);
+  border:1px solid rgba(255,255,255,.45);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  box-shadow:0 0 18px rgba(255,255,255,.14);
+}
+
+#admin-pass{
+  width:100%!important;
+  margin-bottom:18px;
+  background:rgba(255,255,255,.15)!important;
+  border:1px solid rgba(255,255,255,.55)!important;
+  color:#fff!important;
+  font-size:1.35rem!important;
+  letter-spacing:8px;
+  text-shadow:0 1px 4px rgba(0,0,0,.45);
+}
+
+#admin-lock .number-pad{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+#admin-lock .number-pad button{
+  padding:14px 0;
+  border-radius:16px;
+  background:rgba(210,185,130,.58);
+  border:1px solid rgba(255,245,210,.78);
+  color:#2b2112;
+  font-size:1.05rem;
   font-weight:900;
-  box-shadow:0 0 14px rgba(255,255,255,.18);
+  box-shadow:0 4px 10px rgba(0,0,0,.18);
 }
 
 /* 미션 화면 */
@@ -303,17 +374,17 @@ body.logged-in #login-screen{display:none!important}
   padding:22px;
   border-radius:32px;
   text-align:center;
-  background:rgba(255,255,255,.52);
-  border:1px solid rgba(255,255,255,.86);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
+  background:rgba(255,255,255,.42);
+  border:1px solid rgba(255,255,255,.78);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   box-shadow:0 14px 36px rgba(40,90,130,.14);
 }
 
 .study-card h1{
   margin:0 0 12px;
   font-size:1.45rem;
-  font-weight:800;
+  font-weight:900;
 }
 
 .mission-sub{
@@ -321,48 +392,70 @@ body.logged-in #login-screen{display:none!important}
   margin:8px 0 16px;
 }
 
+/* 카드 선택: 글자보다 사진 중심 */
 .card-list{
   display:grid;
   grid-template-columns:1fr;
-  gap:14px;
+  gap:16px;
 }
 
 .card-choice{
-  border:1px solid rgba(255,255,255,.86);
+  border:1px solid rgba(255,255,255,.78);
   border-radius:22px;
-  padding:10px;
-  color:#173147;
-  font-weight:800;
-  background:rgba(255,255,255,.72);
+  padding:8px;
+  color:transparent;
+  font-size:0;
+  background:rgba(255,255,255,.55);
   box-shadow:0 10px 24px rgba(40,90,130,.12);
 }
 
 .card-choice img{
   width:100%;
-  aspect-ratio:16/10;
+  aspect-ratio:16/9;
   object-fit:contain;
   border-radius:16px;
-  background:rgba(255,255,255,.75);
+  background:rgba(255,255,255,.9);
 }
 
 .mission-img{
   width:100%;
-  max-height:260px;
+  max-height:270px;
   object-fit:contain;
   border-radius:20px;
-  background:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.86);
   padding:8px;
 }
 
 .timer{
-  margin:16px 0;
+  margin:12px 0 8px;
   font-size:2rem;
-  font-weight:800;
+  font-weight:900;
 }
 
+/* 에너지바 */
+.energy-bar{
+  width:100%;
+  height:22px;
+  margin:12px auto 16px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.75);
+}
+
+.energy-fill,
+#energy-fill{
+  width:100%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#9eefff,#5bc7ff);
+  transition:width .4s linear;
+}
+
+/* 미션 버튼 */
 .timer-buttons{
   display:flex;
-  gap:10px;
+  gap:12px;
   justify-content:center;
   margin-bottom:14px;
 }
@@ -371,14 +464,16 @@ body.logged-in #login-screen{display:none!important}
 .photo-btn,
 .complete-btn,
 .small-btn{
-  border:0;
   border-radius:24px;
-  background:rgba(120,210,255,.26);
-  border:1px solid rgba(255,255,255,.65);
-  color:#173147;
+  background:rgba(120,210,255,.12);
+  border:2px solid rgba(255,255,255,.72);
+  color:#fff;
   padding:14px 22px;
   font-weight:900;
-  box-shadow:0 8px 20px rgba(40,120,170,.16);
+  box-shadow:0 0 14px rgba(255,255,255,.18);
+  text-shadow:0 1px 4px rgba(0,0,0,.45);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
 }
 
 .photo-btn{
@@ -485,100 +580,4 @@ body.logged-in #login-screen{display:none!important}
   border-radius:22px;
   background:rgba(255,255,255,.72);
   font-weight:800;
-}
-/* 관리실 입구 화면 */
-#admin-lock{
-  background-image:url("images/admin-door.png") !important;
-  background-size:cover !important;
-  background-position:center center !important;
-  background-repeat:no-repeat !important;
-  background-color:#dff5ff !important;
-
-  padding:0 !important;
-  color:#ffffff !important;
-}
-
-/* 뒤로가기 */
-#admin-lock .back-btn{
-  position:absolute;
-  top:24px;
-  left:24px;
-  z-index:20;
-
-  background:rgba(120,210,255,.14);
-  border:1px solid rgba(255,255,255,.55);
-  color:#ffffff;
-
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-
-  text-shadow:0 1px 4px rgba(0,0,0,.45);
-  box-shadow:0 0 14px rgba(255,255,255,.18);
-}
-
-/* 기존 제목 숨김 */
-#admin-lock h1,
-#admin-lock p{
-  display:none !important;
-}
-
-/* 비밀번호 박스 전체 위치 */
-#admin-lock .pass-pad{
-  position:absolute;
-  left:50%;
-  top:48%;
-  transform:translate(-50%,-50%);
-
-  width:78%;
-  max-width:320px;
-
-  margin:0 !important;
-  padding:22px 18px;
-
-  border-radius:28px;
-  background:rgba(20,30,25,.18);
-  border:1px solid rgba(255,255,255,.5);
-
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-
-  box-shadow:0 0 18px rgba(255,255,255,.14);
-}
-
-/* 비밀번호 입력칸 */
-#admin-pass{
-  width:100% !important;
-  margin-bottom:18px;
-
-  background:rgba(255,255,255,.16) !important;
-  border:1px solid rgba(255,255,255,.55) !important;
-
-  color:#ffffff !important;
-  font-size:1.35rem !important;
-  letter-spacing:8px;
-
-  text-shadow:0 1px 4px rgba(0,0,0,.45);
-}
-
-/* 숫자패드 */
-#admin-lock .number-pad{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-#admin-lock .number-pad button{
-  padding:14px 0;
-
-  border-radius:16px;
-
-  background:rgba(210,185,130,.55);
-  border:1px solid rgba(255,245,210,.75);
-
-  color:#2b2112;
-
-  font-size:1.05rem;
-  font-weight:900;
-
-  box-shadow:0 4px 10px rgba(0,0,0,.18);
 }
