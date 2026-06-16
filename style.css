@@ -83,11 +83,15 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .main-page{
-  background-image:url("images/main-bg.png") !important;
-  background-size:cover !important;
-  background-position:center center !important;
-  background-repeat:no-repeat !important;
-  background-color:#dff5ff !important;
+  background-image:url("images/main-bg.png");
+
+  background-size:100% auto;
+
+  background-position:center top;
+
+  background-repeat:no-repeat;
+
+  background-color:#dff5ff;
 }
 
 .mission-page{
