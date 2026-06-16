@@ -58,15 +58,16 @@ async function startIntro() {
   const name = localStorage.getItem("pilotName");
   const nameBox = document.getElementById("name-box");
   const enterBtn = document.getElementById("enter-btn");
+  const line = document.getElementById("type-line");
 
   if (nameBox) nameBox.hidden = true;
   if (enterBtn) enterBtn.hidden = true;
+  if (line) line.innerHTML = `<span class="cursor">▌</span>`;
 
-  await typeText("");
   await typeText("신호 수신중...");
 
   if (!name) {
-    await typeText("새 파일럿 감지");
+    await typeText("새 파일럿 감지...");
     await typeText("이름을 입력하세요");
 
     if (nameBox) {
@@ -83,10 +84,11 @@ async function startIntro() {
 
   if (enterBtn) enterBtn.hidden = false;
 }
-
 async function savePilot() {
   const input = document.getElementById("pilot-name");
   const name = input.value.trim();
+  const nameBox = document.getElementById("name-box");
+  const enterBtn = document.getElementById("enter-btn");
 
   if (!name) {
     alert("이름을 입력해줘.");
@@ -95,13 +97,9 @@ async function savePilot() {
 
   localStorage.setItem("pilotName", name);
 
-  const nameBox = document.getElementById("name-box");
-  const enterBtn = document.getElementById("enter-btn");
-
   if (nameBox) nameBox.hidden = true;
   if (enterBtn) enterBtn.hidden = true;
 
-  await typeText(`파일럿 ${name} 등록 완료!`);
   await typeText("환영합니다");
   await typeText(`파일럿 ${name}`);
 
