@@ -134,16 +134,12 @@ body.logged-in #login-screen{display:none!important}
 
 .cursor{
   display:inline-block;
-  width:2px;
-  height:1.15em;
-  margin-left:5px;
-  background:#ffffff;
-  border-radius:2px;
-  vertical-align:-0.12em;
-  font-size:0;
+  color:#ffffff;
+  font-weight:200;
+  font-size:1em;
+  margin-left:3px;
   animation:blink 1s step-end infinite;
 }
-
 @keyframes blink{
   0%,50%{opacity:1}
   51%,100%{opacity:0}
