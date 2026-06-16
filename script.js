@@ -247,23 +247,30 @@ function selectVisualCard(card) {
   updateTimerText();
 }
 
-/* 타이머 */
 function updateTimerText() {
   const el = document.getElementById("timer-text");
-  const circle = document.getElementById("timer-circle");
+  const fill = document.getElementById("energy-fill");
 
   const min = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const sec = String(timeLeft % 60).padStart(2, "0");
 
   if (el) el.textContent = `${min}:${sec}`;
 
-  if (circle) {
-    const circumference = 2 * Math.PI * 54;
-    const pct = timeLeft / TOTAL_TIME;
-    circle.style.strokeDashoffset = circumference * (1 - pct);
+  if (fill) {
+    const percent = Math.max(0, Math.min(100, (timeLeft / TOTAL_TIME) * 100));
+    fill.style.width = `${percent}%`;
+
+    if (percent > 70) {
+      fill.style.background = "linear-gradient(90deg,#8b5cf6,#3b82f6)";
+    } else if (percent > 45) {
+      fill.style.background = "linear-gradient(90deg,#3b82f6,#22c55e)";
+    } else if (percent > 20) {
+      fill.style.background = "linear-gradient(90deg,#facc15,#f97316)";
+    } else {
+      fill.style.background = "linear-gradient(90deg,#f97316,#ef4444)";
+    }
   }
 }
-
 function startTimer() {
   stopTimer();
 
