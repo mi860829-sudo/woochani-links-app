@@ -204,18 +204,20 @@ body.logged-in #login-screen{display:none!important}
 }
 
 /* 미션 버튼 패널 - 다리 위 정가운데 */
-.mission-panel {
-  position: absolute;
-  left: 50%;
-  top: 50%;            /* 다리 바로 위 위치 */
-  transform: translateX(-50%);
-  width: 86%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  z-index: 8;
-}
+.mission-panel{
+  position:absolute;
+  left:50%;
+  top:12%;
+  transform:translateX(-50%);
 
+  width:82%;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+
+  z-index:8;
+}
 /* 버튼 스타일 - 3번처럼 테두리형 */
 .mission-panel button {
   min-height: 110px;
@@ -255,7 +257,7 @@ body.logged-in #login-screen{display:none!important}
 /* 오늘의 임무 - 왼쪽 나무판 위치 */
 .today-count {
   position: absolute;
-  left: 4%;
+  left: 2%;
   bottom: 10%;
   width: 130px;
   padding: 12px;
