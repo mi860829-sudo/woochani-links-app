@@ -207,7 +207,7 @@ body.logged-in #login-screen{display:none!important}
 .mission-panel {
   position: absolute;
   left: 50%;
-  top: 35%;            /* 다리 바로 위 위치 */
+  top: 50%;            /* 다리 바로 위 위치 */
   transform: translateX(-50%);
   width: 86%;
   display: grid;
@@ -604,16 +604,7 @@ body.logged-in #login-screen{display:none!important}
   font-weight:800;
 }
 
-/* 원형 타이머 */
-.timer-circle-wrap {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  margin: 16px auto 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .timer-text-inside {
   position: absolute;
