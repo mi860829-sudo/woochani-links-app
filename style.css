@@ -74,15 +74,17 @@ body.logged-in #login-screen{display:none!important}
 .page.active{display:block}
 
 /* 배경 */
-.intro-page {
-  background-image: url("intro-bg.png") !important;
+ .intro-page{
+  background-image:url("images/intro-bg.png") !important;
+
   background-size: cover !important;   /* contain → cover 로 변경! */
   background-position: center center !important;
   background-repeat: no-repeat !important;
 }
 
 .main-page{
-  background-image:url("main-bg.png") !important;
+  background-image:url("images/main-bg.png") !important;
+
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -90,7 +92,8 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .mission-page{
-  background-image:url("study-bg.png") !important;
+  background-image:url("images/study-bg.png") !important;
+
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -286,8 +289,9 @@ body.logged-in #login-screen{display:none!important}
 }
 
 /* 관리실 입구 - 문 배경 꽉 채우기 */
-#admin-lock {
-  background-image: url("admin-door.png") !important;
+#admin-lock{
+  background-image:url("images/admin-door.png") !important;
+
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
