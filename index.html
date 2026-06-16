@@ -95,19 +95,13 @@
         ← 카드 다시 고르기
       </button>
 
-      <div class="timer-circle-wrap">
-        <svg width="130" height="130" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="54"
-            fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
-          <circle id="timer-circle" cx="60" cy="60" r="54"
-            fill="none" stroke="#5bc7ff" stroke-width="10"
-            stroke-linecap="round"
-            stroke-dasharray="339.3"
-            stroke-dashoffset="0"
-            transform="rotate(-90 60 60)"/>
-        </svg>
-        <span id="timer-text" class="timer-text-inside">10:00</span>
-      </div>
+     <div class="timer-area">
+  <div id="timer-text" class="timer-text">10:00</div>
+
+  <div class="energy-bar">
+    <div id="energy-fill" class="energy-fill"></div>
+  </div>
+</div>
 
       <div class="timer-buttons">
         <button onclick="startTimer()" type="button">▶️</button>
