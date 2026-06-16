@@ -399,3 +399,19 @@ function resetVisualCards() {
 function openLink(url) {
   window.location.href = url;
 }
+
+function openImageModal() {
+  const img = document.getElementById("selected-card-img");
+  const modal = document.getElementById("image-modal");
+  const modalImg = document.getElementById("modal-card-img");
+
+  if (!img || !modal || !modalImg || !img.src) return;
+
+  modalImg.src = img.src;
+  modal.hidden = false;
+}
+
+function closeImageModal() {
+  const modal = document.getElementById("image-modal");
+  if (modal) modal.hidden = true;
+}
