@@ -74,16 +74,25 @@ body.logged-in #login-screen{display:none!important}
 .page.active{display:block}
 
 /* 배경 */
-.intro-page{
-  background-image:url("intro-bg.png") !important;
+
+  .intro-page{
+  background-image:url("images/intro-bg.png") !important;
+}
+
+
+
+
   background-size:contain !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
   background-color:#dff5ff !important;
 }
 
-.main-page{
-  background-image:url("main-bg.png") !important;
+
+ .main-page{
+  background-image:url("images/main-bg.png") !important;
+}
+
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -91,7 +100,8 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .mission-page{
-  background-image:url("study-bg.png") !important;
+  background-image:url("images/study-bg.png") !important;
+}
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -243,7 +253,7 @@ body.logged-in #login-screen{display:none!important}
   font-weight:900;
 }
 
-/* 오늘 임무 */
+/* 오늘 미션 */
 .today-count{
   position:absolute;
   left:7%;
@@ -280,8 +290,10 @@ body.logged-in #login-screen{display:none!important}
 }
 
 /* 관리실 입구 화면 */
+
 #admin-lock{
-  background-image:url("admin-door.png") !important;
+  background-image:url("images/admin-door.png") !important;
+}
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
