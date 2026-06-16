@@ -4,6 +4,7 @@ let timerInterval = null;
 let timeLeft = 600;
 
 const ADMIN_PASSWORD = "1004";
+const TOTAL_TIME = 600;
 
 /* 시인지카드 1~60 */
 const visualCards = Array.from({ length: 60 }, (_, i) => {
@@ -12,8 +13,9 @@ const visualCards = Array.from({ length: 60 }, (_, i) => {
   return {
     id: i + 1,
     title: `시인지카드 ${i + 1}`,
-  image: `visual-card-${num}.jpg`}
-  
+    image: `visual-card-${num}.jpg`
+  };
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   startIntro();
@@ -37,6 +39,8 @@ function go(pageId) {
 /* 인트로 타자 효과 */
 async function typeText(text, speed = 80) {
   const line = document.getElementById("type-line");
+  if (!line) return;
+
   line.innerHTML = "";
 
   if (!text) {
@@ -157,7 +161,7 @@ function goMission(type) {
   alert("이 미션은 다음 단계에서 연결할게.");
 }
 
-/* 시인지 카드 진행 */
+/* 시인지 카드 */
 function getDoneVisualCards() {
   return JSON.parse(localStorage.getItem("doneVisualCards") || "[]");
 }
@@ -166,7 +170,6 @@ function saveDoneVisualCards(done) {
   localStorage.setItem("doneVisualCards", JSON.stringify(done));
 }
 
-/* 완료한 카드는 빠지고, 아직 안 한 카드 중 앞에서 3개만 표시 */
 function getVisibleVisualCards() {
   const done = getDoneVisualCards();
 
@@ -178,7 +181,7 @@ function getVisibleVisualCards() {
 function openVisualMission() {
   selectedCard = null;
   stopTimer();
-  timeLeft = 600;
+  timeLeft = TOTAL_TIME;
   updateTimerText();
 
   const selectView = document.getElementById("card-select-view");
@@ -188,6 +191,7 @@ function openVisualMission() {
 
   if (selectView) selectView.hidden = false;
   if (playView) playView.hidden = true;
+
   if (preview) {
     preview.hidden = true;
     preview.src = "";
@@ -213,7 +217,6 @@ function openVisualMission() {
 
         btn.innerHTML = `
           <img src="${card.image}" alt="${card.title}">
-          <div>${card.title}</div>
         `;
 
         cardList.appendChild(btn);
@@ -229,37 +232,58 @@ function selectVisualCard(card) {
 
   const selectView = document.getElementById("card-select-view");
   const playView = document.getElementById("card-play-view");
+  const title = document.getElementById("selected-card-title");
+  const img = document.getElementById("selected-card-img");
 
   if (selectView) selectView.hidden = true;
   if (playView) playView.hidden = false;
 
   document.getElementById("mission-title").textContent = "오늘의 시인지 미션";
-  document.getElementById("selected-card-title").textContent = card.title;
-  document.getElementById("selected-card-img").src = card.image;
 
-  timeLeft = 600;
+  if (title) title.textContent = "";
+  if (img) img.src = card.image;
+
+  timeLeft = TOTAL_TIME;
   updateTimerText();
 }
 
-/* 10분 타이머 */
+/* 타이머 */
 function updateTimerText() {
   const el = document.getElementById("timer-text");
   const circle = document.getElementById("timer-circle");
-  if (!el) return;
 
   const min = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const sec = String(timeLeft % 60).padStart(2, "0");
-  el.textContent = `${min}:${sec}`;
 
-  // 원형 진행바 업데이트
+  if (el) el.textContent = `${min}:${sec}`;
+
   if (circle) {
-    const total = 600;
-    const pct = timeLeft / total;
     const circumference = 2 * Math.PI * 54;
+    const pct = timeLeft / TOTAL_TIME;
     circle.style.strokeDashoffset = circumference * (1 - pct);
   }
 }
-  
+
+function startTimer() {
+  stopTimer();
+
+  timerInterval = setInterval(() => {
+    if (timeLeft > 0) {
+      timeLeft--;
+      updateTimerText();
+    } else {
+      stopTimer();
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
 /* 사진 */
 function previewPhoto(event) {
   const file = event.target.files[0];
@@ -270,9 +294,11 @@ function previewPhoto(event) {
   preview.hidden = false;
 }
 
-/* 시인지 카드 완료 */
+/* 완료 */
 function completeCardMission() {
   if (!selectedCard) return;
+
+  stopTimer();
 
   const doneCards = getDoneVisualCards();
 
@@ -370,7 +396,6 @@ function resetVisualCards() {
   alert("시인지 카드 기록을 초기화했어요.");
 }
 
-/* 외부 링크용 */
 function openLink(url) {
   window.location.href = url;
 }
