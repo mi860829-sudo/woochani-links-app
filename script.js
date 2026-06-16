@@ -41,13 +41,13 @@ async function typeText(text, speed = 80) {
   line.innerHTML = "";
 
   if (!text) {
-    line.innerHTML = `<span class="cursor">▌</span>`;
+    line.innerHTML = `<span class="cursor">|</span>`;
     await delay(800);
     return;
   }
 
   for (let i = 0; i < text.length; i++) {
-    line.innerHTML = text.slice(0, i + 1) + `<span class="cursor">▌</span>`;
+    line.innerHTML = text.slice(0, i + 1) + `<span class="cursor">|</span>`;
     await delay(speed);
   }
 
