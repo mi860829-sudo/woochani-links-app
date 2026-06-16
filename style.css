@@ -134,11 +134,19 @@ body.logged-in #login-screen{display:none!important}
 
 .cursor{
   display:inline-block;
-  animation:blink .75s step-end infinite;
+  width:2px;
+  height:1.15em;
+  margin-left:5px;
+  background:#ffffff;
+  border-radius:2px;
+  vertical-align:-0.12em;
+  font-size:0;
+  animation:blink 1s step-end infinite;
 }
 
 @keyframes blink{
-  50%{opacity:0}
+  0%,50%{opacity:1}
+  51%,100%{opacity:0}
 }
 
 .name-box{
