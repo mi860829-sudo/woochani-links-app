@@ -18,44 +18,44 @@ body.logged-in #login-screen{display:none!important}
 .page{display:none;position:relative;min-height:100vh;width:100%;overflow:hidden}
 .page.active{display:block}
 
-/* 비밀기지 배경 이미지 */
-.sky-page{
+/* 배경 */
+.intro-page{
   background-image:url("images/intro-bg.png") !important;
   background-size:cover !important;
   background-position:center !important;
   background-repeat:no-repeat !important;
 }
 
-/* 기존 CSS 도형 기지 숨김 */
-.sky-page::before,
-.base-wrap,
-.base-island,
-.waterfall,
-.flag-v,
-.season-mark{
-  display:none !important;
+.main-page{
+  background-image:url("images/main-bg.png") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
 }
 
-/* 첫 진입 / 환영 문구 */
-.center-message{
+.mission-page{
+  background-image:url("images/study-bg.png") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  min-height:100vh;
+  padding:24px;
+  color:#173147;
+}
+
+/* 인트로 */
+.intro-message{
   position:absolute;
   left:24px;
   right:24px;
-  top:12%;
+  top:13%;
   z-index:20;
   text-align:center;
   color:#173147;
   font-size:1.48rem;
   font-weight:900;
   line-height:1.55;
-  text-shadow:
-    0 2px 8px rgba(255,255,255,.95),
-    0 4px 18px rgba(255,255,255,.8);
-}
-
-#welcome-line{
-  font-size:1.55rem;
-  line-height:1.7;
+  text-shadow:0 2px 8px rgba(255,255,255,.95),0 4px 18px rgba(255,255,255,.8);
 }
 
 .cursor{
@@ -67,7 +67,6 @@ body.logged-in #login-screen{display:none!important}
   50%{opacity:0}
 }
 
-/* 이름 입력 */
 .name-box{
   margin-top:18px;
   display:flex;
@@ -89,7 +88,7 @@ body.logged-in #login-screen{display:none!important}
   box-shadow:0 8px 24px rgba(50,100,130,.12);
 }
 
-.name-box button,.small-btn{
+.name-box button,.small-btn,.enter-btn{
   border:0;
   border-radius:18px;
   background:#ffd83d;
@@ -100,15 +99,11 @@ body.logged-in #login-screen{display:none!important}
 }
 
 /* 메인 미션 */
-.main-page .center-message{
-  display:none;
-}
-
 .mission-panel{
   position:absolute;
-  left:28px;
-  right:28px;
-  top:42%;
+  left:9%;
+  right:26%;
+  top:12%;
   z-index:8;
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -116,42 +111,55 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .mission-panel button{
-  min-height:92px;
+  min-height:120px;
   border:1px solid rgba(255,255,255,.88);
-  border-radius:26px;
-  background:rgba(255,255,255,.45);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  box-shadow:0 14px 34px rgba(60,120,150,.15);
+  border-radius:28px;
+  background:rgba(255,255,255,.48);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 12px 32px rgba(40,90,130,.16);
   color:#173147;
-  font-size:1.08rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
   font-weight:900;
+}
+
+.mission-icon{
+  font-size:1.35rem;
+  line-height:1.2;
+}
+
+.mission-panel button strong{
+  font-size:1rem;
 }
 
 .today-count{
   position:absolute;
-  left:28px;
-  right:28px;
-  bottom:58px;
+  left:7%;
+  bottom:13.5%;
+  width:23%;
   z-index:8;
-  padding:14px;
+  padding:0;
   text-align:center;
-  border-radius:20px;
-  background:rgba(255,255,255,.48);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  color:#173147;
+  background:transparent;
+  box-shadow:none;
+  color:#fff;
+  text-shadow:0 2px 4px rgba(0,0,0,.45);
   font-weight:900;
-  box-shadow:0 10px 26px rgba(60,120,150,.11);
+  font-size:.9rem;
+  line-height:1.4;
 }
 
 .admin-btn{
   position:absolute;
-  right:18px;
-  bottom:16px;
+  right:4%;
+  bottom:6%;
   z-index:9;
   border:1px solid rgba(255,255,255,.75);
-  background:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.35);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
   border-radius:999px;
@@ -161,19 +169,133 @@ body.logged-in #login-screen{display:none!important}
   color:#173147;
 }
 
-/* 미션/관리 화면 */
+/* 미션 화면 */
+.back-btn{
+  border:0;
+  background:rgba(255,255,255,.72);
+  padding:12px 16px;
+  border-radius:14px;
+  font-weight:800;
+  color:#173147;
+}
+
+.study-card{
+  margin:70px auto 0;
+  width:100%;
+  max-width:380px;
+  min-height:70vh;
+  padding:22px;
+  border-radius:32px;
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(255,255,255,.85);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 20px 60px rgba(40,90,130,.16);
+  text-align:center;
+}
+
+.study-card h1{
+  margin:0 0 12px;
+  font-size:1.45rem;
+}
+
+.mission-sub{
+  font-weight:900;
+  margin:8px 0 16px;
+}
+
+.card-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.card-choice{
+  border:0;
+  border-radius:22px;
+  background:rgba(255,255,255,.72);
+  padding:10px;
+  box-shadow:0 10px 24px rgba(40,90,130,.12);
+  color:#173147;
+  font-weight:900;
+}
+
+.card-choice img{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:contain;
+  border-radius:16px;
+  background:white;
+}
+
+.mission-img{
+  width:100%;
+  max-height:260px;
+  object-fit:contain;
+  border-radius:20px;
+  background:white;
+  padding:8px;
+}
+
+.timer{
+  margin:16px 0;
+  font-size:2rem;
+  font-weight:900;
+}
+
+.timer-buttons{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:14px;
+}
+
+.timer-buttons button,.photo-btn{
+  border:0;
+  border-radius:18px;
+  background:#ffd83d;
+  padding:13px 20px;
+  font-weight:900;
+  color:#4b3900;
+}
+
+.photo-btn{
+  display:inline-block;
+}
+
+.photo-preview{
+  width:100%;
+  margin-top:14px;
+  border-radius:18px;
+}
+
+.mission-complete{
+  position:static!important;
+  width:100%;
+  margin-top:16px;
+}
+
+/* 완료 효과 */
+.clear-effect{
+  position:absolute;
+  inset:0;
+  z-index:99;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:2rem;
+  font-weight:900;
+  color:#fff;
+  background:rgba(20,70,120,.45);
+  text-shadow:0 3px 10px rgba(0,0,0,.35);
+}
+
+/* 관리실 */
 .focus-page{
   background:#f8fbff;
   padding:28px 24px;
   color:#263b4a;
-}
-
-.back-btn{
-  border:0;
-  background:#edf5fa;
-  padding:12px 16px;
-  border-radius:14px;
-  font-weight:800;
 }
 
 .focus-page h1{
@@ -188,10 +310,6 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .complete-btn{
-  position:absolute;
-  left:24px;
-  right:24px;
-  bottom:40px;
   padding:18px;
   border:0;
   border-radius:22px;
@@ -199,6 +317,29 @@ body.logged-in #login-screen{display:none!important}
   color:#4b3900;
   font-size:1.1rem;
   font-weight:900;
+}
+
+.pass-pad{
+  margin-top:24px;
+  text-align:center;
+}
+
+.number-pad{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.number-pad button{
+  padding:18px 0;
+  border:0;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 8px 20px rgba(70,120,150,.12);
+  font-size:1.1rem;
+  font-weight:900;
+  color:#173147;
 }
 
 .admin-card{
@@ -221,4 +362,11 @@ body.logged-in #login-screen{display:none!important}
   background:#ffe0de;
   color:#9f1d18;
   margin-top:12px;
+}
+
+.mission-finished{
+  padding:24px;
+  border-radius:22px;
+  background:rgba(255,255,255,.72);
+  font-weight:900;
 }
