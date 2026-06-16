@@ -244,34 +244,22 @@ function selectVisualCard(card) {
 /* 10분 타이머 */
 function updateTimerText() {
   const el = document.getElementById("timer-text");
+  const circle = document.getElementById("timer-circle");
   if (!el) return;
 
   const min = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const sec = String(timeLeft % 60).padStart(2, "0");
-
   el.textContent = `${min}:${sec}`;
-}
 
-function startTimer() {
-  stopTimer();
-
-  timerInterval = setInterval(() => {
-    if (timeLeft > 0) {
-      timeLeft--;
-      updateTimerText();
-    } else {
-      stopTimer();
-    }
-  }, 1000);
-}
-
-function stopTimer() {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
+  // 원형 진행바 업데이트
+  if (circle) {
+    const total = 600;
+    const pct = timeLeft / total;
+    const circumference = 2 * Math.PI * 54;
+    circle.style.strokeDashoffset = circumference * (1 - pct);
   }
 }
-
+  
 /* 사진 */
 function previewPhoto(event) {
   const file = event.target.files[0];
