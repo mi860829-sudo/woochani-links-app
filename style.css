@@ -475,3 +475,15 @@ body.logged-in #login-screen{display:none!important}
   min-width:120px !important;
   padding:15px 24px !important;
 }
+/* 인트로 유리창 더 투명하게 */
+.intro-message{
+  background:rgba(255,255,255,.26) !important;
+  border:1px solid rgba(255,255,255,.62) !important;
+  backdrop-filter:blur(12px) !important;
+  -webkit-backdrop-filter:blur(12px) !important;
+  box-shadow:0 16px 42px rgba(40,90,130,.12) !important;
+}
+
+#type-line{
+  white-space:pre-line !important;
+}
