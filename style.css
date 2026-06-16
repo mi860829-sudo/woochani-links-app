@@ -207,10 +207,10 @@ body.logged-in #login-screen{display:none!important}
 .mission-panel{
   position:absolute;
   left:50%;
-  top:12%;
+  top:8%;
   transform:translateX(-50%);
 
-  width:82%;
+  width:78%;
 
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -218,6 +218,7 @@ body.logged-in #login-screen{display:none!important}
 
   z-index:8;
 }
+
 /* 버튼 스타일 - 3번처럼 테두리형 */
 .mission-panel button {
   min-height: 110px;
@@ -255,10 +256,10 @@ body.logged-in #login-screen{display:none!important}
 }
 
 /* 오늘의 임무 - 왼쪽 나무판 위치 */
-.today-count {
-  position: absolute;
-  left: 2%;
-  bottom: 10%;
+.today-count{
+  left:6%;
+  bottom:5%;
+
   width: 130px;
   padding: 12px;
   text-align: center;
