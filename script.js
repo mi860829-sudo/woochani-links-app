@@ -58,29 +58,31 @@ async function startIntro() {
   const savedName = localStorage.getItem("pilotName");
   const nameBox = document.getElementById("name-box");
   const enterBtn = document.getElementById("enter-btn");
+  const input = document.getElementById("pilot-name");
 
-  if (nameBox) nameBox.hidden = true;
-  if (enterBtn) enterBtn.hidden = true;
+  nameBox.hidden = true;
+  enterBtn.hidden = true;
+  if (input) input.value = "";
 
   await typeText("신호 수신중...");
+  await delay(500);
+
+  await typeText("파일럿...");
+  await delay(500);
 
   if (!savedName) {
-    await typeText("파일럿...");
     await typeText("이름을 등록해주세요");
+    await delay(300);
 
-    if (nameBox) {
-      nameBox.hidden = false;
-      document.getElementById("pilot-name").value = "";
-      document.getElementById("pilot-name").focus();
-    }
-
+    nameBox.hidden = false;
+    input.focus();
     return;
   }
 
-  await typeText("파일럿...");
   await typeText(savedName);
+  await delay(300);
 
-  if (enterBtn) enterBtn.hidden = false;
+  enterBtn.hidden = false;
 }
 
 async function savePilot() {
@@ -96,13 +98,16 @@ async function savePilot() {
 
   localStorage.setItem("pilotName", name);
 
-  if (nameBox) nameBox.hidden = true;
-  if (enterBtn) enterBtn.hidden = true;
+  nameBox.hidden = true;
+  enterBtn.hidden = true;
 
   await typeText("환영합니다");
-  await typeText(`파일럿 ${name}`);
+  await delay(500);
 
-  if (enterBtn) enterBtn.hidden = false;
+  await typeText(`파일럿 ${name}`);
+  await delay(300);
+
+  enterBtn.hidden = false;
 }
 
 /* 오늘 완료 기록 */
