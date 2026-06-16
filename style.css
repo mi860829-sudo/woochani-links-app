@@ -74,25 +74,16 @@ body.logged-in #login-screen{display:none!important}
 .page.active{display:block}
 
 /* 배경 */
-
-  .intro-page{
-  background-image:url("images/intro-bg.png") !important;
-}
-
-
-
-
+.intro-page{
+  background-image:url("intro-bg.png") !important;
   background-size:contain !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
   background-color:#dff5ff !important;
 }
 
-
- .main-page{
-  background-image:url("images/main-bg.png") !important;
-}
-
+.main-page{
+  background-image:url("main-bg.png") !important;
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -100,8 +91,7 @@ body.logged-in #login-screen{display:none!important}
 }
 
 .mission-page{
-  background-image:url("images/study-bg.png") !important;
-}
+  background-image:url("study-bg.png") !important;
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -253,7 +243,7 @@ body.logged-in #login-screen{display:none!important}
   font-weight:900;
 }
 
-/* 오늘 미션 */
+/* 오늘 임무 */
 .today-count{
   position:absolute;
   left:7%;
@@ -290,10 +280,8 @@ body.logged-in #login-screen{display:none!important}
 }
 
 /* 관리실 입구 화면 */
-
 #admin-lock{
-  background-image:url("images/admin-door.png") !important;
-}
+  background-image:url("admin-door.png") !important;
   background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
@@ -404,7 +392,7 @@ body.logged-in #login-screen{display:none!important}
   margin:8px 0 16px;
 }
 
-/* 카드 선택: 사진 중심 */
+/* 카드 선택: 글자보다 사진 중심 */
 .card-list{
   display:grid;
   grid-template-columns:1fr;
@@ -593,3 +581,5 @@ body.logged-in #login-screen{display:none!important}
   background:rgba(255,255,255,.72);
   font-weight:800;
 }
+
+Css
