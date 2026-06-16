@@ -3,16 +3,18 @@ let selectedCard = null;
 let timerInterval = null;
 let timeLeft = 600;
 
+const TOTAL_TIME = 600;
 const ADMIN_PASSWORD = "1004";
 
 /* 시인지카드 1~60 */
+/* 현재 파일명이 visual-card-001.jpg 형식이므로 / 경로 없이 사용 */
 const visualCards = Array.from({ length: 60 }, (_, i) => {
   const num = String(i + 1).padStart(3, "0");
 
   return {
     id: i + 1,
     title: `시인지카드 ${i + 1}`,
-    image: `images/visual/visual-card-${num}.jpg`
+    image: `visual-card-${num}.jpg`
   };
 });
 
@@ -30,7 +32,9 @@ function delay(ms) {
 function go(pageId) {
   document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
   document.getElementById(pageId).classList.add("active");
+
   window.scrollTo(0, 0);
+
   updateCount();
   updateAdmin();
 }
@@ -38,6 +42,8 @@ function go(pageId) {
 /* 인트로 타자 효과 */
 async function typeText(text, speed = 80) {
   const line = document.getElementById("type-line");
+  if (!line) return;
+
   line.innerHTML = "";
 
   if (!text) {
@@ -80,6 +86,9 @@ async function startIntro() {
     return;
   }
 
+  await typeText("환영합니다");
+  await delay(500);
+
   await typeText(`파일럿 ${savedName}`);
   await delay(300);
 
@@ -88,9 +97,12 @@ async function startIntro() {
 
 async function savePilot() {
   const input = document.getElementById("pilot-name");
-  const name = input.value.trim();
   const nameBox = document.getElementById("name-box");
   const enterBtn = document.getElementById("enter-btn");
+
+  if (!input) return;
+
+  const name = input.value.trim();
 
   if (!name) {
     alert("이름을 입력해줘.");
@@ -167,7 +179,7 @@ function saveDoneVisualCards(done) {
   localStorage.setItem("doneVisualCards", JSON.stringify(done));
 }
 
-/* 완료한 카드는 빠지고, 아직 안 한 카드 중 앞에서 3개만 표시 */
+/* 완료한 카드는 빠지고, 아직 안 한 카드 중 앞에서 3개 표시 */
 function getVisibleVisualCards() {
   const done = getDoneVisualCards();
 
@@ -179,19 +191,28 @@ function getVisibleVisualCards() {
 function openVisualMission() {
   selectedCard = null;
   stopTimer();
-  timeLeft = 600;
+  timeLeft = TOTAL_TIME;
   updateTimerText();
 
+  const title = document.getElementById("mission-title");
   const selectView = document.getElementById("card-select-view");
   const playView = document.getElementById("card-play-view");
   const cardList = document.getElementById("card-list");
   const preview = document.getElementById("photo-preview");
+  const photoInput = document.getElementById("mission-photo");
+
+  if (title) title.textContent = "오늘의 시인지 미션";
 
   if (selectView) selectView.hidden = false;
   if (playView) playView.hidden = true;
+
   if (preview) {
     preview.hidden = true;
     preview.src = "";
+  }
+
+  if (photoInput) {
+    photoInput.value = "";
   }
 
   if (cardList) {
@@ -205,6 +226,7 @@ function openVisualMission() {
           🎉 시인지카드 60장 완료!
         </div>
       `;
+
       markMissionDone("visual");
     } else {
       cards.forEach(card => {
@@ -212,9 +234,9 @@ function openVisualMission() {
         btn.className = "card-choice";
         btn.onclick = () => selectVisualCard(card);
 
+        /* 글자 없이 사진만 보이게 */
         btn.innerHTML = `
-          <img src="${card.image}" alt="${card.title}">
-          <div>${card.title}</div>
+          <img src="${card.image}" alt="시인지카드">
         `;
 
         cardList.appendChild(btn);
@@ -230,27 +252,52 @@ function selectVisualCard(card) {
 
   const selectView = document.getElementById("card-select-view");
   const playView = document.getElementById("card-play-view");
+  const title = document.getElementById("mission-title");
+  const img = document.getElementById("selected-card-img");
+  const preview = document.getElementById("photo-preview");
+  const photoInput = document.getElementById("mission-photo");
 
   if (selectView) selectView.hidden = true;
   if (playView) playView.hidden = false;
 
-  document.getElementById("mission-title").textContent = "오늘의 시인지 미션";
-  document.getElementById("selected-card-title").textContent = card.title;
-  document.getElementById("selected-card-img").src = card.image;
+  if (title) title.textContent = "오늘의 시인지 미션";
 
-  timeLeft = 600;
+  if (img) {
+    img.src = card.image;
+    img.alt = "시인지카드";
+  }
+
+  if (preview) {
+    preview.hidden = true;
+    preview.src = "";
+  }
+
+  if (photoInput) {
+    photoInput.value = "";
+  }
+
+  timeLeft = TOTAL_TIME;
   updateTimerText();
 }
 
-/* 10분 타이머 */
+/* 10분 타이머 + 에너지바 */
 function updateTimerText() {
   const el = document.getElementById("timer-text");
-  if (!el) return;
 
   const min = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const sec = String(timeLeft % 60).padStart(2, "0");
 
-  el.textContent = `${min}:${sec}`;
+  if (el) el.textContent = `${min}:${sec}`;
+
+  updateEnergyBar();
+}
+
+function updateEnergyBar() {
+  const fill = document.getElementById("energy-fill");
+  if (!fill) return;
+
+  const percent = Math.max(0, Math.min(100, (timeLeft / TOTAL_TIME) * 100));
+  fill.style.width = `${percent}%`;
 }
 
 function startTimer() {
@@ -279,6 +326,8 @@ function previewPhoto(event) {
   if (!file) return;
 
   const preview = document.getElementById("photo-preview");
+  if (!preview) return;
+
   preview.src = URL.createObjectURL(file);
   preview.hidden = false;
 }
@@ -286,6 +335,8 @@ function previewPhoto(event) {
 /* 시인지 카드 완료 */
 function completeCardMission() {
   if (!selectedCard) return;
+
+  stopTimer();
 
   const doneCards = getDoneVisualCards();
 
@@ -334,6 +385,8 @@ function clearPass() {
 
 function checkAdmin() {
   const input = document.getElementById("admin-pass");
+  if (!input) return;
+
   const pass = input.value.trim();
 
   if (pass !== ADMIN_PASSWORD) {
@@ -358,6 +411,8 @@ function updateAdmin() {
 
 function changePilotName() {
   const input = document.getElementById("new-pilot-name");
+  if (!input) return;
+
   const name = input.value.trim();
 
   if (!name) {
@@ -368,6 +423,7 @@ function changePilotName() {
   localStorage.setItem("pilotName", name);
   input.value = "";
   updateAdmin();
+
   alert(`파일럿 ${name}으로 변경했어요.`);
 }
 
@@ -375,11 +431,13 @@ function resetToday() {
   localStorage.removeItem(todayKey());
   updateCount();
   updateAdmin();
+
   alert("오늘 기록을 초기화했어요.");
 }
 
 function resetVisualCards() {
   localStorage.removeItem("doneVisualCards");
+
   alert("시인지 카드 기록을 초기화했어요.");
 }
 
