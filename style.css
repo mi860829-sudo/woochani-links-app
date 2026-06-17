@@ -755,15 +755,29 @@ body.logged-in #login-screen{display:none!important}
 .mission-panel{
   position:absolute !important;
   left:50% !important;
-  top:28% !important;          /* 메뉴 위아래: 작을수록 위, 클수록 아래 */
+  top:28% !important;
   transform:translateX(-50%) !important;
-  width:15% !important;        /* 메뉴 전체 폭 */
+
+  width:86% !important;   /* 15% 말고 82~88% */
+
   display:grid !important;
   grid-template-columns:1fr 1fr !important;
   gap:20px !important;
   z-index:8 !important;
 }
+.mission-panel button{
+  min-height:95px !important;  /* 버튼 높이 */
+  border-radius:24px !important;
+  gap:6px !important;
+}
 
+.mission-icon{
+  font-size:1.2rem !important;
+}
+
+.mission-panel button strong{
+  font-size:.9rem !important;
+}
 /* 오늘의 미션 위치 */
 .today-count{
   position:absolute !important;   /* 이게 빠져서 위치 조정이 제대로 안 됐음 */
