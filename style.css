@@ -749,3 +749,33 @@ body.logged-in #login-screen{display:none!important}
   background:linear-gradient(90deg,#8b5cf6,#3b82f6,#22c55e,#facc15,#f97316,#ef4444);
   transition:width .4s linear, background .4s linear;
 }
+/* ===== 최종 위치 조정용: 맨 아래에 붙이기 ===== */
+
+/* 메인 메뉴 위치 */
+.mission-panel{
+  position:absolute !important;
+  left:50% !important;
+  top:28% !important;          /* 메뉴 위아래: 작을수록 위, 클수록 아래 */
+  transform:translateX(-50%) !important;
+  width:86% !important;        /* 메뉴 전체 폭 */
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:20px !important;
+  z-index:8 !important;
+}
+
+/* 오늘의 미션 위치 */
+.today-count{
+  position:absolute !important;   /* 이게 빠져서 위치 조정이 제대로 안 됐음 */
+  left:5% !important;             /* 작을수록 왼쪽, 클수록 오른쪽 */
+  bottom:6% !important;           /* 작을수록 아래, 클수록 위 */
+  width:135px !important;
+  padding:12px !important;
+  text-align:center !important;
+  border-radius:16px !important;
+  background:rgba(180,140,80,.38) !important;
+  border:1.5px solid rgba(220,185,120,.7) !important;
+  color:#2b1a05 !important;
+  font-weight:900 !important;
+  z-index:20 !important;
+}
