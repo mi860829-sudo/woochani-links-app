@@ -258,7 +258,7 @@ body.logged-in #login-screen{display:none!important}
 /* 오늘의 임무 - 왼쪽 나무판 위치 */
 .today-count{
   left:6%;
-  bottom:5%;
+  bottom:15%;
 
   width: 130px;
   padding: 12px;
