@@ -165,21 +165,99 @@ function openActivity(type) {
   go("activity");
 }
 
-function pressPass(num) {
-  const input = document.getElementById("admin-pass");
-  if (!input || input.value.length >= 4) return;
-  input.value += num;
+function unlockSecretRoom() {
+  const modal = document.getElementById("secret-code-modal");
+  const input = document.getElementById("secret-code-input");
+
+  if (!modal || !input) return;
+
+  input.value = "";
+  modal.hidden = false;
+
+  setTimeout(() => {
+    input.focus();
+  }, 80);
 }
 
-function clearPass() {
-  const input = document.getElementById("admin-pass");
-  if (input) input.value = "";
+function closeSecretCode() {
+  const modal = document.getElementById("secret-code-modal");
+  const input = document.getElementById("secret-code-input");
+
+  if (input) {
+    input.value = "";
+  }
+
+  if (modal) {
+    modal.hidden = true;
+  }
 }
 
-function checkAdmin() {
-  const input = document.getElementById("admin-pass");
+function confirmSecretCode() {
+  const input = document.getElementById("secret-code-input");
+  const button = document.getElementById("secret-unlock-btn");
+  const message = document.getElementById("secret-message");
+
   const pass = input ? input.value.trim() : "";
 
+  if (pass !== ADMIN_PASSWORD) {
+    if (input) {
+      input.value = "";
+      input.focus();
+    }
+
+    if (message) {
+      message.textContent = "봉인이 풀리지 않았어요.";
+    }
+
+    if (button) {
+      button.classList.remove("unlocking");
+      button.classList.add("denied");
+
+      setTimeout(() => {
+        button.classList.remove("denied");
+      }, 650);
+    }
+
+    return;
+  }
+
+  closeSecretCode();
+
+  if (message) {
+    message.textContent = "암호 확인 · 봉인 해제 중";
+  }
+
+  if (button) {
+    button.classList.add("unlocking");
+  }
+
+  setTimeout(() => {
+    if (button) {
+      button.classList.remove("unlocking");
+    }
+
+    if (message) {
+      message.textContent = "";
+    }
+
+    go("admin");
+  }, 850);
+}
+
+/* 컴퓨터에서 Enter/Esc 키로도 조작 가능 */
+document.addEventListener("keydown", event => {
+  const modal = document.getElementById("secret-code-modal");
+
+  if (!modal || modal.hidden) return;
+
+  if (event.key === "Enter") {
+    confirmSecretCode();
+  }
+
+  if (event.key === "Escape") {
+    closeSecretCode();
+  }
+});
   if (pass !== ADMIN_PASSWORD) {
     alert("암호가 맞지 않아요.");
     clearPass();
