@@ -1,59 +1,85 @@
-let currentMission = "";
-let selectedCard = null;
-let timerInterval = null;
-let timeLeft = 600;
+const ADMIN_PASSWORD = "6927";
 
-const ADMIN_PASSWORD = "1004";
-const TOTAL_TIME = 600;
+const activityContent = {
+  listen: {
+    icon: "🎧",
+    title: "흘려듣기",
+    description: "오늘 듣고 싶은 방법을 골라요.",
+    options: [
+      { icon: "🎵", title: "소리 듣기", note: "좋아하는 노래를 편하게 들어요" },
+      { icon: "📺", title: "영상 흘려보기", note: "익숙한 영상을 가볍게 만나요" }
+    ]
+  },
+  nobuyoung: {
+    icon: "🎬",
+    title: "노부영 영상",
+    description: "오늘 만날 노래와 이야기를 골라요.",
+    options: [
+      { icon: "🌈", title: "노부영 영상 보기", note: "노래와 이야기를 이어서 만나요" }
+    ]
+  },
+  books: {
+    icon: "📚",
+    title: "책 읽기",
+    description: "오늘 읽고 싶은 책을 골라요.",
+    options: [
+      { icon: "가", title: "한글 책", note: "좋아하는 우리말 이야기를 읽어요" },
+      { icon: "A", title: "영어 책", note: "익숙한 영어 이야기를 읽어요" }
+    ]
+  }
+};
 
-/* 시인지카드 1~60 */
-const visualCards = Array.from({ length: 60 }, (_, i) => {
-  const num = String(i + 1).padStart(3, "0");
+const adminSections = {
+  diary: {
+    icon: "📅",
+    title: "일기장",
+    description: "하루 이야기를 모아보는 공간이에요."
+  },
+  shelf: {
+    icon: "📚",
+    title: "책장",
+    description: "읽은 한글책과 영어책을 모아보는 공간이에요."
+  },
+  records: {
+    icon: "🗂️",
+    title: "기록",
+    description: "우차니가 어떤 활동을 했는지 살펴보는 공간이에요."
+  },
+  settings: {
+    icon: "⚙️",
+    title: "설정",
+    description: "앱의 활동과 연결 주소를 관리하는 공간이에요."
+  }
+};
 
-  return {
-    id: i + 1,
-    title: `시인지카드 ${i + 1}`,
-   image: `images/visual-card-${num}.jpg`
-  };
-});
+document.addEventListener("DOMContentLoaded", startIntro);
 
-document.addEventListener("DOMContentLoaded", () => {
-  startIntro();
-  updateCount();
-  updateAdmin();
-});
-
-/* 공통 */
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function go(pageId) {
   document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
-  document.getElementById(pageId).classList.add("active");
+  const nextPage = document.getElementById(pageId);
+  if (nextPage) nextPage.classList.add("active");
   window.scrollTo(0, 0);
-  updateCount();
-  updateAdmin();
 }
 
-/* 인트로 타자 효과 */
 async function typeText(text, speed = 80) {
   const line = document.getElementById("type-line");
   if (!line) return;
 
   line.innerHTML = "";
-
   if (!text) {
-    line.innerHTML = `<span class="cursor">|</span>`;
+    line.innerHTML = '<span class="cursor">|</span>';
     await delay(800);
     return;
   }
 
-  for (let i = 0; i < text.length; i++) {
-    line.innerHTML = text.slice(0, i + 1) + `<span class="cursor">|</span>`;
+  for (let i = 0; i < text.length; i += 1) {
+    line.innerHTML = `${text.slice(0, i + 1)}<span class="cursor">|</span>`;
     await delay(speed);
   }
-
   await delay(850);
 }
 
@@ -69,29 +95,23 @@ async function startIntro() {
 
   await typeText("신호 수신중...");
   await delay(500);
-
   await typeText("파일럿...");
   await delay(500);
 
   if (!savedName) {
     await typeText("이름을 등록해주세요");
-    await delay(300);
-
     if (nameBox) nameBox.hidden = false;
     if (input) input.focus();
-
     return;
   }
 
   await typeText(`파일럿 ${savedName}`);
-  await delay(300);
-
   if (enterBtn) enterBtn.hidden = false;
 }
 
 async function savePilot() {
   const input = document.getElementById("pilot-name");
-  const name = input.value.trim();
+  const name = input ? input.value.trim() : "";
   const nameBox = document.getElementById("name-box");
   const enterBtn = document.getElementById("enter-btn");
 
@@ -101,249 +121,53 @@ async function savePilot() {
   }
 
   localStorage.setItem("pilotName", name);
-
   if (nameBox) nameBox.hidden = true;
   if (enterBtn) enterBtn.hidden = true;
 
   await typeText("환영합니다");
   await delay(500);
-
   await typeText(`파일럿 ${name}`);
-  await delay(300);
-
   if (enterBtn) enterBtn.hidden = false;
 }
 
-/* 오늘 완료 기록 */
-function todayKey() {
-  const d = new Date();
-  return `missions-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+function openActivity(type) {
+  const content = activityContent[type];
+  if (!content) return;
+
+  const icon = document.getElementById("activity-icon");
+  const title = document.getElementById("activity-title");
+  const description = document.getElementById("activity-description");
+  const options = document.getElementById("activity-options");
+
+  icon.textContent = content.icon;
+  title.textContent = content.title;
+  description.textContent = content.description;
+  options.innerHTML = "";
+
+  content.options.forEach(option => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "activity-option";
+    button.innerHTML = `
+      <span aria-hidden="true">${option.icon}</span>
+      <span>
+        <strong>${option.title}</strong>
+        <small>${option.note}</small>
+      </span>
+      <b aria-hidden="true">›</b>
+    `;
+    button.addEventListener("click", () => {
+      alert(`${option.title} 연결은 다음 단계에서 설정할 수 있어요.`);
+    });
+    options.appendChild(button);
+  });
+
+  go("activity");
 }
 
-function getDone() {
-  return JSON.parse(localStorage.getItem(todayKey()) || "[]");
-}
-
-function saveDone(done) {
-  localStorage.setItem(todayKey(), JSON.stringify(done));
-}
-
-function updateCount() {
-  const done = getDone();
-
-  const el = document.getElementById("done-count");
-  if (el) el.textContent = done.length;
-
-  const adminDone = document.getElementById("admin-done-count");
-  if (adminDone) adminDone.textContent = done.length;
-}
-
-function markMissionDone(type) {
-  const done = getDone();
-
-  if (!done.includes(type)) {
-    done.push(type);
-    saveDone(done);
-  }
-
-  updateCount();
-}
-
-/* 메인 미션 */
-function goMission(type) {
-  currentMission = type;
-
-  if (type === "visual") {
-    openVisualMission();
-    return;
-  }
-
-  alert("이 미션은 다음 단계에서 연결할게.");
-}
-
-/* 시인지 카드 */
-function getDoneVisualCards() {
-  return JSON.parse(localStorage.getItem("doneVisualCards") || "[]");
-}
-
-function saveDoneVisualCards(done) {
-  localStorage.setItem("doneVisualCards", JSON.stringify(done));
-}
-
-function getVisibleVisualCards() {
-  const done = getDoneVisualCards();
-
-  return visualCards
-    .filter(card => !done.includes(card.id))
-    .slice(0, 3);
-}
-
-function openVisualMission() {
-  selectedCard = null;
-  stopTimer();
-  timeLeft = TOTAL_TIME;
-  updateTimerText();
-
-  const selectView = document.getElementById("card-select-view");
-  const playView = document.getElementById("card-play-view");
-  const cardList = document.getElementById("card-list");
-  const preview = document.getElementById("photo-preview");
-
-  if (selectView) selectView.hidden = false;
-  if (playView) playView.hidden = true;
-
-  if (preview) {
-    preview.hidden = true;
-    preview.src = "";
-  }
-
-  if (cardList) {
-    cardList.innerHTML = "";
-
-    const cards = getVisibleVisualCards();
-
-    if (cards.length === 0) {
-      cardList.innerHTML = `
-        <div class="mission-finished">
-          🎉 시인지카드 60장 완료!
-        </div>
-      `;
-      markMissionDone("visual");
-    } else {
-      cards.forEach(card => {
-        const btn = document.createElement("button");
-        btn.className = "card-choice";
-        btn.onclick = () => selectVisualCard(card);
-
-        btn.innerHTML = `
-          <img src="${card.image}" alt="${card.title}">
-        `;
-
-        cardList.appendChild(btn);
-      });
-    }
-  }
-
-  go("mission");
-}
-
-function selectVisualCard(card) {
-  selectedCard = card;
-
-  const selectView = document.getElementById("card-select-view");
-  const playView = document.getElementById("card-play-view");
-  const title = document.getElementById("selected-card-title");
-  const img = document.getElementById("selected-card-img");
-
-  if (selectView) selectView.hidden = true;
-  if (playView) playView.hidden = false;
-
-  document.getElementById("mission-title").textContent = "오늘의 미션";
-
-  if (title) title.textContent = "";
-  if (img) img.src = card.image;
-
-  timeLeft = TOTAL_TIME;
-  updateTimerText();
-}
-
-function updateTimerText() {
-  const el = document.getElementById("timer-text");
-  const fill = document.getElementById("energy-fill");
-
-  const min = String(Math.floor(timeLeft / 60)).padStart(2, "0");
-  const sec = String(timeLeft % 60).padStart(2, "0");
-
-  if (el) el.textContent = `${min}:${sec}`;
-
-  if (fill) {
-    const percent = Math.max(0, Math.min(100, (timeLeft / TOTAL_TIME) * 100));
-    fill.style.width = `${percent}%`;
-
-    if (percent > 70) {
-      fill.style.background = "linear-gradient(90deg,#8b5cf6,#3b82f6)";
-    } else if (percent > 45) {
-      fill.style.background = "linear-gradient(90deg,#3b82f6,#22c55e)";
-    } else if (percent > 20) {
-      fill.style.background = "linear-gradient(90deg,#facc15,#f97316)";
-    } else {
-      fill.style.background = "linear-gradient(90deg,#f97316,#ef4444)";
-    }
-  }
-}
-function startTimer() {
-  stopTimer();
-
-  timerInterval = setInterval(() => {
-    if (timeLeft > 0) {
-      timeLeft--;
-      updateTimerText();
-    } else {
-      stopTimer();
-    }
-  }, 1000);
-}
-
-function stopTimer() {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-  }
-}
-
-/* 사진 */
-function previewPhoto(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const preview = document.getElementById("photo-preview");
-  preview.src = URL.createObjectURL(file);
-  preview.hidden = false;
-}
-
-/* 완료 */
-function completeCardMission() {
-  if (!selectedCard) return;
-
-  stopTimer();
-
-  const doneCards = getDoneVisualCards();
-
-  if (!doneCards.includes(selectedCard.id)) {
-    doneCards.push(selectedCard.id);
-    saveDoneVisualCards(doneCards);
-  }
-
-  const remaining = getVisibleVisualCards();
-
-  if (remaining.length === 0) {
-    markMissionDone("visual");
-  }
-
-  showClearEffect();
-
-  setTimeout(() => {
-    openVisualMission();
-  }, 1800);
-}
-
-function showClearEffect() {
-  const effect = document.getElementById("clear-effect");
-  if (!effect) return;
-
-  effect.hidden = false;
-
-  setTimeout(() => {
-    effect.hidden = true;
-  }, 1600);
-}
-
-/* 관리실 */
 function pressPass(num) {
   const input = document.getElementById("admin-pass");
-  if (!input) return;
-
-  if (input.value.length >= 4) return;
+  if (!input || input.value.length >= 4) return;
   input.value += num;
 }
 
@@ -354,7 +178,7 @@ function clearPass() {
 
 function checkAdmin() {
   const input = document.getElementById("admin-pass");
-  const pass = input.value.trim();
+  const pass = input ? input.value.trim() : "";
 
   if (pass !== ADMIN_PASSWORD) {
     alert("암호가 맞지 않아요.");
@@ -366,59 +190,12 @@ function checkAdmin() {
   go("admin");
 }
 
-function updateAdmin() {
-  const name = localStorage.getItem("pilotName") || "-";
+function openAdminSection(sectionId) {
+  const section = adminSections[sectionId];
+  if (!section) return;
 
-  const current = document.getElementById("current-pilot-name");
-  if (current) current.textContent = name;
-
-  const adminDone = document.getElementById("admin-done-count");
-  if (adminDone) adminDone.textContent = getDone().length;
-}
-
-function changePilotName() {
-  const input = document.getElementById("new-pilot-name");
-  const name = input.value.trim();
-
-  if (!name) {
-    alert("새 이름을 입력해줘.");
-    return;
-  }
-
-  localStorage.setItem("pilotName", name);
-  input.value = "";
-  updateAdmin();
-  alert(`파일럿 ${name}으로 변경했어요.`);
-}
-
-function resetToday() {
-  localStorage.removeItem(todayKey());
-  updateCount();
-  updateAdmin();
-  alert("오늘 기록을 초기화했어요.");
-}
-
-function resetVisualCards() {
-  localStorage.removeItem("doneVisualCards");
-  alert("시인지 카드 기록을 초기화했어요.");
-}
-
-function openLink(url) {
-  window.location.href = url;
-}
-
-function openImageModal() {
-  const img = document.getElementById("selected-card-img");
-  const modal = document.getElementById("image-modal");
-  const modalImg = document.getElementById("modal-card-img");
-
-  if (!img || !modal || !modalImg || !img.src) return;
-
-  modalImg.src = img.src;
-  modal.hidden = false;
-}
-
-function closeImageModal() {
-  const modal = document.getElementById("image-modal");
-  if (modal) modal.hidden = true;
+  document.getElementById("admin-section-icon").textContent = section.icon;
+  document.getElementById("admin-section-title").textContent = section.title;
+  document.getElementById("admin-section-description").textContent = section.description;
+  go("admin-section");
 }
