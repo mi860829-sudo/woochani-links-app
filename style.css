@@ -793,3 +793,214 @@ body.logged-in #login-screen{display:none!important}
   font-weight:900 !important;
   z-index:20 !important;
 }
+
+/* ===== 우차니 활동 홈 ===== */
+.activity-panel{
+  top:27% !important;
+  gap:14px !important;
+}
+
+.activity-panel button{
+  min-height:104px !important;
+  padding:14px 10px !important;
+  background:rgba(241,250,255,.62) !important;
+  border:1.5px solid rgba(255,255,255,.9) !important;
+  box-shadow:0 10px 26px rgba(42,105,145,.16) !important;
+}
+
+.activity-panel button:last-child{
+  grid-column:1 / -1;
+  width:calc(50% - 7px);
+  justify-self:center;
+}
+
+.activity-panel .mission-icon{
+  font-size:1.8rem !important;
+}
+
+.activity-panel button strong{
+  font-size:1rem !important;
+}
+
+.activity-panel button small{
+  color:#527084;
+  font-size:.72rem;
+  font-weight:750;
+}
+
+.activity-page{
+  padding-top:22px;
+}
+
+.activity-card{
+  min-height:auto;
+  margin-top:52px;
+  padding:28px 20px 22px;
+}
+
+.activity-hero-icon{
+  display:grid;
+  place-items:center;
+  width:76px;
+  height:76px;
+  margin:0 auto 14px;
+  border-radius:24px;
+  background:rgba(255,255,255,.76);
+  box-shadow:0 12px 26px rgba(44,113,151,.12);
+  font-size:2.35rem;
+}
+
+.activity-options{
+  display:grid;
+  gap:12px;
+  margin-top:22px;
+}
+
+.activity-option{
+  width:100%;
+  min-height:78px;
+  display:grid;
+  grid-template-columns:48px 1fr 18px;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.92);
+  border-radius:22px;
+  background:rgba(255,255,255,.7);
+  color:#173147;
+  text-align:left;
+  box-shadow:0 9px 22px rgba(45,103,139,.1);
+}
+
+.activity-option > span:first-child{
+  display:grid;
+  place-items:center;
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  background:#e4f6ff;
+  font-size:1.35rem;
+  font-weight:900;
+}
+
+.activity-option strong,
+.activity-option small{
+  display:block;
+}
+
+.activity-option strong{
+  margin-bottom:4px;
+  font-size:1rem;
+}
+
+.activity-option small{
+  color:#607987;
+  font-size:.74rem;
+  line-height:1.4;
+}
+
+.activity-option b{
+  color:#6b91a7;
+  font-size:1.7rem;
+  font-weight:500;
+}
+
+/* ===== 관리실 메뉴 ===== */
+#admin{
+  background:linear-gradient(180deg,#eef8ff 0%,#f9fcff 48%,#fff 100%);
+}
+
+#admin h1{
+  margin-bottom:8px;
+}
+
+.admin-welcome{
+  margin:0 0 24px;
+}
+
+.admin-menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.admin-menu button{
+  min-height:146px;
+  padding:18px 12px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  border:1px solid #e1edf4;
+  border-radius:26px;
+  background:#fff;
+  color:#263b4a;
+  text-align:left;
+  box-shadow:0 12px 30px rgba(70,120,150,.1);
+}
+
+.admin-menu button > span{
+  margin:auto 0 18px;
+  font-size:2rem;
+}
+
+.admin-menu strong,
+.admin-menu small{
+  display:block;
+}
+
+.admin-menu strong{
+  font-size:1.06rem;
+}
+
+.admin-menu small{
+  margin-top:5px;
+  color:#758995;
+  font-size:.72rem;
+}
+
+.admin-section-head{
+  margin-top:48px;
+}
+
+.admin-section-head > span{
+  display:block;
+  margin-bottom:10px;
+  font-size:2.2rem;
+}
+
+.admin-section-head h1{
+  margin:0 0 8px;
+}
+
+.admin-section-head p{
+  margin:0;
+}
+
+.admin-empty{
+  margin-top:28px;
+  padding:26px 20px;
+  border:1px dashed #c7dae5;
+  border-radius:24px;
+  background:rgba(255,255,255,.72);
+  text-align:center;
+}
+
+.admin-empty strong{
+  font-size:1.05rem;
+}
+
+.admin-empty p{
+  margin:8px 0 0;
+  font-size:.86rem;
+}
+
+@media (max-height:700px){
+  .activity-panel{
+    top:24% !important;
+  }
+
+  .activity-panel button{
+    min-height:88px !important;
+  }
+}
